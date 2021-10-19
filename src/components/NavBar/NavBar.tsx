@@ -1,4 +1,5 @@
 import { FunctionComponent, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import Logo from '../Logo';
 import Input from '../Common/Input';
 import CartIcon from '../Icons/Cart';
@@ -36,9 +37,12 @@ const NavBar: FunctionComponent<NavBarProps> = ({ doSearch }) => {
     return (
         <StyledNav>
             <MainContainer>
-                <LogoContainer>
-                    <Logo />
-                </LogoContainer>
+                <Link to="/">
+                    <LogoContainer>
+                        <Logo />
+                    </LogoContainer>
+                </Link>
+
                 <CartContainerMobile>
                     {isDarkTheme ? (
                         <SimpleButton

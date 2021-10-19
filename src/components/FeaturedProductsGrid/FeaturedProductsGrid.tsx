@@ -1,6 +1,13 @@
 import { ResultsEntity } from '../../types/featuredProducts';
 import FeaturedProduct from '../FeaturedProduct';
-import { OverallGridContainer, GridContainer, GridItem } from './styled';
+import { Link } from 'react-router-dom';
+import ActionButton from '../ActionButton';
+import {
+    OverallGridContainer,
+    GridContainer,
+    GridItem,
+    ButtonContainer,
+} from './styled';
 
 interface FeaturedProductsProps {
     products: ResultsEntity[];
@@ -8,15 +15,26 @@ interface FeaturedProductsProps {
 
 const FeaturedProducts = ({ products }: FeaturedProductsProps) => {
     return (
-        <OverallGridContainer>
-            <GridContainer>
-                {products.map((product, index) => (
-                    <GridItem key={index}>
-                        <FeaturedProduct product={product} />
-                    </GridItem>
-                ))}
-            </GridContainer>
-        </OverallGridContainer>
+        <>
+            <OverallGridContainer>
+                <GridContainer>
+                    {products.map((product, index) => (
+                        <GridItem key={index}>
+                            <FeaturedProduct product={product} />
+                        </GridItem>
+                    ))}
+                </GridContainer>
+            </OverallGridContainer>
+            <ButtonContainer>
+                <Link to="/products" style={{ width: '100%' }}>
+                    <ActionButton
+                        color={'tertiary'}
+                        label={'View all products'}
+                        onClick={() => false}
+                    />
+                </Link>
+            </ButtonContainer>
+        </>
     );
 };
 

@@ -50,7 +50,7 @@ export const darkTheme = {
     },
     tertiary: {
         main: '',
-        contrast: '',
+        contrastText: '',
     },
     error: {
         main: '#000',

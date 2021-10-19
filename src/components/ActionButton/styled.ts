@@ -6,6 +6,7 @@ export interface IStyledButton {
 }
 
 export const StyledButton = styled.button<IStyledButton>`
+    width: 100%;
     padding: 0.8em;
     text-decoration: none;
     text-align: center;

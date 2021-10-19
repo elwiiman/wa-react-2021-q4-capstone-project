@@ -18,3 +18,12 @@ export const GridContainer = styled.section`
 `;
 
 export const GridItem = styled.div``;
+
+export const ButtonContainer = styled.div`
+    margin: 0 auto;
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+`;
