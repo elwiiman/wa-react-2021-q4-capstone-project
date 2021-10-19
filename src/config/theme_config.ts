@@ -9,8 +9,8 @@ export const lightTheme = {
     },
 
     tertiary: {
-        main: '#0E2345',
-        contrast: '',
+        main: '#fff',
+        contrastText: '#024fd4',
     },
     error: {
         main: '#000',
