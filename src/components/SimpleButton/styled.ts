@@ -5,6 +5,7 @@ export interface IButton {
 }
 
 export const StyledButton = styled.button<IButton>`
+    width: 100%;
     cursor: pointer;
     background: none;
     border: none;

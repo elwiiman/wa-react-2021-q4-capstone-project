@@ -25,7 +25,7 @@ const FeaturedProducts = ({ products }: FeaturedProductsProps) => {
                     ))}
                 </GridContainer>
             </OverallGridContainer>
-            <ButtonContainer>
+            {/* <ButtonContainer>
                 <Link to="/products" style={{ width: '100%' }}>
                     <ActionButton
                         color={'tertiary'}
@@ -33,7 +33,7 @@ const FeaturedProducts = ({ products }: FeaturedProductsProps) => {
                         onClick={() => false}
                     />
                 </Link>
-            </ButtonContainer>
+            </ButtonContainer> */}
         </>
     );
 };

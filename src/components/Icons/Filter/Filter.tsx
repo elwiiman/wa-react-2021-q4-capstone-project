@@ -1,7 +1,12 @@
 import { useContext } from 'react';
 import { ThemeContext } from 'styled-components';
 
-const Filter = () => {
+interface FilterProps {
+    width?: number;
+    height?: number;
+}
+
+const Filter = ({ width = 256, height = 256 }: FilterProps) => {
     const themeContext = useContext(ThemeContext);
     const {
         text: { primary: color },
@@ -11,8 +16,8 @@ const Filter = () => {
         <svg
             xmlns="http://www.w3.org/2000/svg"
             xmlnsXlink="http://www.w3.org/1999/xlink"
-            width={256}
-            height={256}
+            width={width}
+            height={height}
             viewBox="0 0 256 256"
             xmlSpace="preserve"
         >

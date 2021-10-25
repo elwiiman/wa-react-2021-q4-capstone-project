@@ -10,11 +10,13 @@ export const OveralContainer = styled.div`
     border-radius: 5px;
 
     @media ${device.tablet} {
-        width: 230px;
+        /* width: 230px; */
+        width: 190px;
     }
 
     @media ${device.laptop} {
-        width: 300px;
+        /* width: 300px; */
+        width: 275px;
     }
 `;
 export const FeaturedProductImageContainer = styled.div`

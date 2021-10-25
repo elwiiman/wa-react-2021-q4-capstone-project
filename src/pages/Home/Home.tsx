@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+import ActionButton from '../../components/ActionButton';
 import Slider from '../../components/Slider';
 import CategoriesGrid from '../../components/CategoriesGrid';
 import FeaturedProductsGrid from '../../components/FeaturedProductsGrid';
@@ -6,6 +8,7 @@ import Container from '../../components/Common/Container';
 import { featuredBanners } from '../../mocks/featuredBanners';
 import { productCategories } from '../../mocks/productCategories';
 import { featuredProducts } from '../../mocks/featuredProducts';
+import { ViewAllButtonContainer } from './styled';
 
 const Home = () => {
     return (
@@ -22,6 +25,16 @@ const Home = () => {
                 <Title text="Exclusive products for you" center={true} />
                 <FeaturedProductsGrid products={featuredProducts.results} />
             </Container>
+
+            <ViewAllButtonContainer>
+                <Link to="/products" style={{ width: '100%' }}>
+                    <ActionButton
+                        color={'tertiary'}
+                        label={'View all products'}
+                        onClick={() => false}
+                    />
+                </Link>
+            </ViewAllButtonContainer>
         </>
     );
 };

@@ -3,11 +3,12 @@ import { fontTypes } from '../../config/baseFont';
 
 export interface IStyledButton {
     color?: 'primary' | 'secondary' | 'tertiary';
+    padding?: string;
 }
 
 export const StyledButton = styled.button<IStyledButton>`
     width: 100%;
-    padding: 0.8em;
+    padding: ${(props) => (props.padding ? props.padding : '0.8em')};
     text-decoration: none;
     text-align: center;
     border-radius: 5px;

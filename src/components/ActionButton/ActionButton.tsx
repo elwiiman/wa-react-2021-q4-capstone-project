@@ -1,11 +1,13 @@
+import React from 'react';
 import { StyledButton } from './styled';
 
 export interface ActionButtonProps {
-    label: string;
-    onClick: () => {};
+    label: string | React.ReactNode;
+    onClick: () => void;
     disabled?: boolean;
     color?: 'primary' | 'secondary' | 'tertiary';
     type?: 'button' | 'submit' | 'reset' | undefined;
+    padding?: string;
 }
 
 const ActionButton = ({
@@ -14,6 +16,7 @@ const ActionButton = ({
     color,
     type = 'button',
     onClick,
+    padding,
 }: ActionButtonProps) => {
     return (
         <StyledButton
@@ -21,6 +24,7 @@ const ActionButton = ({
             disabled={disabled}
             color={color}
             type={type}
+            padding={padding}
         >
             {label}
         </StyledButton>
