@@ -12,7 +12,8 @@ import FeaturedProductsGrid from '../../components/FeaturedProductsGrid';
 import { productCategories } from '../../mocks/productCategories';
 import { featuredProducts } from '../../mocks/featuredProducts';
 
-interface ProductsListProps {}
+//TODO: Maybe some props are needed in the future
+// interface ProductsListProps {}
 
 const ProductsList = () => {
     const [products, setProducts] = useState(featuredProducts.results);

@@ -1,13 +1,7 @@
 import { ResultsEntity } from '../../types/featuredProducts';
 import FeaturedProduct from '../FeaturedProduct';
-import { Link } from 'react-router-dom';
-import ActionButton from '../ActionButton';
-import {
-    OverallGridContainer,
-    GridContainer,
-    GridItem,
-    ButtonContainer,
-} from './styled';
+
+import { OverallGridContainer, GridContainer, GridItem } from './styled';
 
 interface FeaturedProductsProps {
     products: ResultsEntity[];
@@ -25,15 +19,6 @@ const FeaturedProducts = ({ products }: FeaturedProductsProps) => {
                     ))}
                 </GridContainer>
             </OverallGridContainer>
-            {/* <ButtonContainer>
-                <Link to="/products" style={{ width: '100%' }}>
-                    <ActionButton
-                        color={'tertiary'}
-                        label={'View all products'}
-                        onClick={() => false}
-                    />
-                </Link>
-            </ButtonContainer> */}
         </>
     );
 };

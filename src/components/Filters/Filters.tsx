@@ -40,6 +40,7 @@ const Filters = ({
         setParentProducts(
             filterProductsByCategory(selectedFilters, baseProducts)
         );
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedFilters]);
 
     return (
