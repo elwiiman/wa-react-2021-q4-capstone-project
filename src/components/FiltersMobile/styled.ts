@@ -26,11 +26,11 @@ export const CloseButtonContainer = styled.div`
 
 export const FiltersWrapper = styled.div`
     background: ${(props) => props.theme.background.main};
-    /* width: 100%; */
+
     padding: 1rem;
     z-index: 9999;
     position: absolute;
-    top: -1rem;
-    left: -1rem;
+    top: -2em;
+    left: -19px;
     width: 100vw;
 `;

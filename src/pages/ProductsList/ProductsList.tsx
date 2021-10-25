@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Container from '../../components/Common/Container';
 import {
     ProductListContainer,
     DesktopFiltersContainer,
@@ -16,26 +17,28 @@ interface ProductsListProps {}
 const ProductsList = () => {
     const [products, setProducts] = useState(featuredProducts.results);
     return (
-        <ProductListContainer>
-            <MobileFiltersContainer>
-                <FiltersMobile
-                    categories={productCategories.results}
-                    baseProducts={featuredProducts.results}
-                    setParentProducts={setProducts}
-                />
-            </MobileFiltersContainer>
+        <Container colorType="paper">
+            <ProductListContainer>
+                <MobileFiltersContainer>
+                    <FiltersMobile
+                        categories={productCategories.results}
+                        baseProducts={featuredProducts.results}
+                        setParentProducts={setProducts}
+                    />
+                </MobileFiltersContainer>
 
-            <DesktopFiltersContainer>
-                <Filters
-                    categories={productCategories.results}
-                    baseProducts={featuredProducts.results}
-                    setParentProducts={setProducts}
-                />
-            </DesktopFiltersContainer>
-            <GridContainer>
-                <FeaturedProductsGrid products={products} />
-            </GridContainer>
-        </ProductListContainer>
+                <DesktopFiltersContainer>
+                    <Filters
+                        categories={productCategories.results}
+                        baseProducts={featuredProducts.results}
+                        setParentProducts={setProducts}
+                    />
+                </DesktopFiltersContainer>
+                <GridContainer>
+                    <FeaturedProductsGrid products={products} />
+                </GridContainer>
+            </ProductListContainer>
+        </Container>
     );
 };
 

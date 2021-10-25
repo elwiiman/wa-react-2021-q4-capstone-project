@@ -26,15 +26,17 @@ const Home = () => {
                 <FeaturedProductsGrid products={featuredProducts.results} />
             </Container>
 
-            <ViewAllButtonContainer>
-                <Link to="/products" style={{ width: '100%' }}>
-                    <ActionButton
-                        color={'tertiary'}
-                        label={'View all products'}
-                        onClick={() => false}
-                    />
-                </Link>
-            </ViewAllButtonContainer>
+            <Container colorType="paper">
+                <ViewAllButtonContainer>
+                    <Link to="/products" style={{ width: '100%' }}>
+                        <ActionButton
+                            color={'tertiary'}
+                            label={'View all products'}
+                            onClick={() => false}
+                        />
+                    </Link>
+                </ViewAllButtonContainer>
+            </Container>
         </>
     );
 };

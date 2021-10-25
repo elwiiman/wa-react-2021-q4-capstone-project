@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 interface IContainer {
     colorType?: 'contrast' | 'main' | 'paper' | 'secondary' | 'secondary_opac';
+    padding?: string;
 }
 
 export default styled.div<IContainer>`
@@ -10,5 +11,5 @@ export default styled.div<IContainer>`
         return props.theme.background[`${colorType}`];
     }};
 
-    padding: 1em;
+    padding: ${(props) => (props.padding ? props.padding : '1rem')};
 `;

@@ -22,7 +22,7 @@ export const DesktopFiltersContainer = styled.div`
 
 export const MobileFiltersContainer = styled.div`
     display: block;
-    padding: 1rem;
+    padding: 1rem 0.2rem;
 
     @media ${device.tablet} {
         display: none;
