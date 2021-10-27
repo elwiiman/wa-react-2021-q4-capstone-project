@@ -5,40 +5,50 @@ import CategoriesGrid from '../../components/CategoriesGrid';
 import FeaturedProductsGrid from '../../components/FeaturedProductsGrid';
 import Title from '../../components/Title';
 import Container from '../../components/Common/Container';
-import { featuredBanners } from '../../mocks/featuredBanners';
 import { productCategories } from '../../mocks/productCategories';
 import { featuredProducts } from '../../mocks/featuredProducts';
 import { ViewAllButtonContainer } from './styled';
+import { useGetFeaturedBannersQuery } from '../../services/api/apiSlice';
 
 const Home = () => {
-    return (
-        <>
-            {/* TODO: subsititue by results from the API */}
-            <Slider slides={featuredBanners.results} />
+    const {
+        data: featuredBanners,
+        error,
+        isLoading,
+    } = useGetFeaturedBannersQuery();
 
-            <Container colorType="paper">
-                <Title text="Product Categories" />
-                <CategoriesGrid categories={productCategories.results} />
-            </Container>
+    if (isLoading) return <div style={{ height: '436px' }}>Loading..</div>;
+    if (error) return <div>Error!</div>;
+    if (featuredBanners && !isLoading && !error) {
+        return (
+            <>
+                {/* TODO: subsititue by results from the API */}
+                <Slider slides={featuredBanners.results} />
 
-            <Container colorType="paper">
-                <Title text="Exclusive products for you" center={true} />
-                <FeaturedProductsGrid products={featuredProducts.results} />
-            </Container>
+                <Container colorType="paper">
+                    <Title text="Product Categories" />
+                    <CategoriesGrid categories={productCategories.results} />
+                </Container>
 
-            <Container colorType="paper">
-                <ViewAllButtonContainer>
-                    <Link to="/products" style={{ width: '100%' }}>
-                        <ActionButton
-                            color={'tertiary'}
-                            label={'View all products'}
-                            onClick={() => false}
-                        />
-                    </Link>
-                </ViewAllButtonContainer>
-            </Container>
-        </>
-    );
+                <Container colorType="paper">
+                    <Title text="Exclusive products for you" center={true} />
+                    <FeaturedProductsGrid products={featuredProducts.results} />
+                </Container>
+
+                <Container colorType="paper">
+                    <ViewAllButtonContainer>
+                        <Link to="/products" style={{ width: '100%' }}>
+                            <ActionButton
+                                color={'tertiary'}
+                                label={'View all products'}
+                                onClick={() => false}
+                            />
+                        </Link>
+                    </ViewAllButtonContainer>
+                </Container>
+            </>
+        );
+    } else return null;
 };
 
 export default Home;

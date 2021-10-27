@@ -3,7 +3,6 @@ import Home from './pages/Home';
 import ProductsList from './pages/ProductsList';
 import ThemeProvider from './context/ThemeProvider';
 import MainLayout from './Layouts/MainLayout/MainLayout';
-
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
@@ -14,6 +13,7 @@ function App() {
                 <MainLayout>
                     <Switch>
                         <Route exact path="/" component={Home} />
+                        <Route exact path="/home" component={Home} />
                         <Route
                             exact
                             path="/products"

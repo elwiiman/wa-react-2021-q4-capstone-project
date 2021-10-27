@@ -1,6 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { ResultsEntity } from '../../types/featuredBanners';
 import { StyledImage, SliderContainer, Description } from './styled';
+import { takefirstCharacters } from '../../helpers/stringHelpers';
 
 // swiper bundle styles
 import 'swiper/swiper-bundle.min.css';
@@ -43,18 +44,25 @@ const Slider = ({ slides }: SliderProps) => {
                     clickable: true,
                 }}
             >
-                {slides.map((slide) => (
-                    <SwiperSlide key={slide.id}>
-                        <StyledImage
-                            src={slide.data.main_image.url}
-                            alt={slide.data.main_image.alt}
-                        />
+                {slides.map((slide) => {
+                    //trim the description text if is > 40 characters length
+                    let textDescription = slide.data.description[0].text;
+                    textDescription =
+                        textDescription.length > 40
+                            ? `${takefirstCharacters(textDescription, 40)}...`
+                            : textDescription;
 
-                        <Description>
-                            {slide.data.description[0].text}
-                        </Description>
-                    </SwiperSlide>
-                ))}
+                    return (
+                        <SwiperSlide key={slide.id}>
+                            <StyledImage
+                                src={slide.data.main_image.url}
+                                alt={slide.data.main_image.alt}
+                            />
+
+                            <Description>{textDescription}</Description>
+                        </SwiperSlide>
+                    );
+                })}
             </Swiper>
         </SliderContainer>
     );
