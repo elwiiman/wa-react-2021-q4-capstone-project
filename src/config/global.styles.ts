@@ -4,7 +4,8 @@ import './fonts/styles.css';
 export const GlobalStyles = createGlobalStyle`
 
 * {
-    font-family: "Montserrat", sans-serif;
+    //dont get why need to apply important here :( 
+    font-family: "Montserrat", sans-serif !important;
     box-sizing: border-box;
      margin: 0;
     padding: 0;
