@@ -5,10 +5,12 @@ import CategoriesGrid from '../../components/CategoriesGrid';
 import FeaturedProductsGrid from '../../components/FeaturedProductsGrid';
 import Title from '../../components/Title';
 import Container from '../../components/Common/Container';
-import { productCategories } from '../../mocks/productCategories';
 import { featuredProducts } from '../../mocks/featuredProducts';
 import { ViewAllButtonContainer } from './styled';
-import { useGetFeaturedBannersQuery } from '../../services/api/apiSlice';
+import {
+    useGetFeaturedBannersQuery,
+    useGetProductsCategoriesQuery,
+} from '../../services/api/apiSlice';
 
 const Home = () => {
     const {
@@ -17,9 +19,17 @@ const Home = () => {
         isLoading,
     } = useGetFeaturedBannersQuery();
 
+    const {
+        data: productCategories,
+        error: productCategoriesError,
+        isLoading: productCategoriesIsLoading,
+    } = useGetProductsCategoriesQuery();
+
+    console.log('productCategories', productCategories);
+
     if (isLoading) return <div style={{ height: '436px' }}>Loading..</div>;
     if (error) return <div>Error!</div>;
-    if (featuredBanners && !isLoading && !error) {
+    if (featuredBanners && productCategories) {
         return (
             <>
                 {/* TODO: subsititue by results from the API */}

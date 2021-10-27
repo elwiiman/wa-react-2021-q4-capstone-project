@@ -79,9 +79,7 @@ const CategoriesGrid = ({ categories }: CategoriesGridProps) => {
     };
     return (
         <GridWrapper>
-            {shuffle(categories).map((category, index) =>
-                selectAnItem(index, category)
-            )}
+            {categories.map((category, index) => selectAnItem(index, category))}
         </GridWrapper>
     );
 };
