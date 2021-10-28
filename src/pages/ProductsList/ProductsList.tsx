@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Container from '../../components/Common/Container';
+import Spinner from '../../components/Spinner';
 import {
     ProductListContainer,
     DesktopFiltersContainer,
@@ -12,9 +13,20 @@ import FeaturedProductsGrid from '../../components/FeaturedProductsGrid';
 import { useGetProductsCategoriesQuery } from '../../services/api/apiSlice';
 import { featuredProducts } from '../../mocks/featuredProducts';
 
+const SpinnerWithWrappper = () => {
+    return (
+        <Container
+            flexCenter
+            colorType="paper"
+            style={{ height: '260px', width: '100px' }}
+        >
+            <Spinner widthAndHeight="25px" />
+        </Container>
+    );
+};
+
 //TODO: Maybe some props are needed in the future
 // interface ProductsListProps {}
-
 const ProductsList = () => {
     const [products, setProducts] = useState(featuredProducts.results);
 
@@ -34,6 +46,7 @@ const ProductsList = () => {
                             setParentProducts={setProducts}
                         />
                     )}
+                    {productCategoriesIsLoading && <SpinnerWithWrappper />}
                 </MobileFiltersContainer>
 
                 <DesktopFiltersContainer>
@@ -44,6 +57,7 @@ const ProductsList = () => {
                             setParentProducts={setProducts}
                         />
                     )}
+                    {productCategoriesIsLoading && <SpinnerWithWrappper />}
                 </DesktopFiltersContainer>
                 <GridContainer>
                     <FeaturedProductsGrid products={products} />
