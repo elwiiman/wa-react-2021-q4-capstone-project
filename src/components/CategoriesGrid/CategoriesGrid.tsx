@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { ResultsEntity } from '../../types/productCategories';
 import {
     GridWrapper,
@@ -25,13 +26,16 @@ const GridTile = ({ category }: GridTileProps) => {
             name,
             main_image: { url, alt },
         },
+        slugs: [slug],
     } = category;
     return (
-        <ImageContainer>
-            <Image src={url} alt={alt} />
+        <Link to={`products/?category=${slug}`}>
+            <ImageContainer>
+                <Image src={url} alt={alt} />
 
-            <TextImage>{name}</TextImage>
-        </ImageContainer>
+                <TextImage>{name}</TextImage>
+            </ImageContainer>
+        </Link>
     );
 };
 

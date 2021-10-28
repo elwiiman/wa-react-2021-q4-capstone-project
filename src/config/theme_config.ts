@@ -37,6 +37,10 @@ export const lightTheme = {
         tertiary: '#7aaffa',
         contrast: '#fafafa',
     },
+    spinner: {
+        main: '#307AD3',
+        back: '#D3DCE8',
+    },
 };
 
 export const darkTheme = {
@@ -45,8 +49,8 @@ export const darkTheme = {
         contrastText: '#FFF',
     },
     secondary: {
-        main: '#000',
-        contrastText: '#FFF',
+        main: '#FFF',
+        contrastText: '#414146',
     },
     tertiary: {
         main: '',
@@ -76,5 +80,9 @@ export const darkTheme = {
         secondary_opac: 'rgba(53, 59, 78, 0.5)',
         tertiary: '#6b6b6f',
         contrast: '#fafafa',
+    },
+    spinner: {
+        main: '#000c0c',
+        back: '#F2F6F6',
     },
 };

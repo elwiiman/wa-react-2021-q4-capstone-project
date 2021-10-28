@@ -41,5 +41,9 @@ declare module 'styled-components' {
             tertiary: string;
             contrast: string;
         };
+        spinner: {
+            main: string;
+            back: string;
+        };
     }
 }
