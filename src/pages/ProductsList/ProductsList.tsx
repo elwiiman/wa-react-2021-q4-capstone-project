@@ -9,7 +9,7 @@ import {
 import Filters from '../../components/Filters';
 import FiltersMobile from '../../components/FiltersMobile';
 import FeaturedProductsGrid from '../../components/FeaturedProductsGrid';
-import { productCategories } from '../../mocks/productCategories';
+import { useGetProductsCategoriesQuery } from '../../services/api/apiSlice';
 import { featuredProducts } from '../../mocks/featuredProducts';
 
 //TODO: Maybe some props are needed in the future
@@ -17,23 +17,33 @@ import { featuredProducts } from '../../mocks/featuredProducts';
 
 const ProductsList = () => {
     const [products, setProducts] = useState(featuredProducts.results);
+
+    const {
+        data: productCategories,
+        isLoading: productCategoriesIsLoading,
+    } = useGetProductsCategoriesQuery();
+
     return (
         <Container colorType="paper">
             <ProductListContainer>
                 <MobileFiltersContainer>
-                    <FiltersMobile
-                        categories={productCategories.results}
-                        baseProducts={featuredProducts.results}
-                        setParentProducts={setProducts}
-                    />
+                    {productCategories && (
+                        <FiltersMobile
+                            categories={productCategories.results}
+                            baseProducts={featuredProducts.results}
+                            setParentProducts={setProducts}
+                        />
+                    )}
                 </MobileFiltersContainer>
 
                 <DesktopFiltersContainer>
-                    <Filters
-                        categories={productCategories.results}
-                        baseProducts={featuredProducts.results}
-                        setParentProducts={setProducts}
-                    />
+                    {productCategories && (
+                        <Filters
+                            categories={productCategories.results}
+                            baseProducts={featuredProducts.results}
+                            setParentProducts={setProducts}
+                        />
+                    )}
                 </DesktopFiltersContainer>
                 <GridContainer>
                     <FeaturedProductsGrid products={products} />

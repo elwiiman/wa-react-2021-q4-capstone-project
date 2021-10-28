@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { fontTypes } from '../../config/baseFont';
+import { device } from '../../config/breakpoints';
 
 export interface IStyledButton {
     color?: 'primary' | 'secondary' | 'tertiary';
@@ -13,7 +14,7 @@ export const StyledButton = styled.button<IStyledButton>`
     text-align: center;
     border-radius: 5px;
     transition: ease 0.3s;
-    height: 3.438rem;
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,7 +31,12 @@ export const StyledButton = styled.button<IStyledButton>`
                border: 2px solid ${props.theme[color]['contrastText']}`;
     }};
 
-    ${fontTypes.paragraphBold}
+    ${fontTypes.captionBold}
+    height: 2.438rem;
+    @media ${device.tablet} {
+        ${fontTypes.paragraphBold}
+        height: 3.438rem;
+    }
 
     /* On hover */
     :hover:not(:disabled) {
