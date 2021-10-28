@@ -60,3 +60,9 @@ export const Price = styled(ItemInfo)`
         ${fontTypes.paragraph}
     }
 `;
+
+export const AddToCartButtonContainer = styled.div`
+    margin: 0 auto;
+    width: 100%;
+    padding: 0.5rem;
+`;

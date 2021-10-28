@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { ResultsEntity } from '../../types/featuredProducts';
 import {
     OveralContainer,
@@ -6,18 +7,22 @@ import {
     InfoContainer,
     ItemInfoName,
     ItemInfo,
+    AddToCartButtonContainer,
 } from './styled';
 import { takefirstCharacters } from '../../helpers/stringHelpers';
+import ActionButton from '../ActionButton';
 
 export interface FeaturedProductProps {
     product: ResultsEntity;
 }
 
 const FeaturedProduct = ({ product: { data } }: FeaturedProductProps) => {
+    console.log('data product', data);
     const {
         category: { slug },
         mainimage: { url, alt },
         price,
+        sku,
     } = data;
 
     let { name } = data;
@@ -28,14 +33,30 @@ const FeaturedProduct = ({ product: { data } }: FeaturedProductProps) => {
 
     return (
         <OveralContainer>
-            <FeaturedProductImageContainer>
-                <img src={url} alt={alt} />
-            </FeaturedProductImageContainer>
+            <Link to={`/product/${sku}`}>
+                <FeaturedProductImageContainer>
+                    <img src={url} alt={alt} />
+                </FeaturedProductImageContainer>
+            </Link>
+
             <InfoContainer>
-                <ItemInfoName>{name}</ItemInfoName>
+                <Link to={`/product/${sku}`}>
+                    <ItemInfoName>{name}</ItemInfoName>
+                </Link>
                 <ItemInfo>Category : {slug}</ItemInfo>
                 <Price>$ {price}</Price>
             </InfoContainer>
+
+            <AddToCartButtonContainer>
+                <ActionButton
+                    color="tertiary"
+                    label="Add to Cart"
+                    onClick={
+                        //TODO: implemente add to car function
+                        () => {}
+                    }
+                />
+            </AddToCartButtonContainer>
         </OveralContainer>
     );
 };
