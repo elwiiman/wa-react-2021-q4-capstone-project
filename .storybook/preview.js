@@ -3,6 +3,9 @@ import { ThemeProvider } from 'styled-components';
 import { withThemes } from '@react-theming/storybook-addon';
 import { addDecorator } from '@storybook/react';
 import { lightTheme, darkTheme } from '../src/config/theme_config';
+import { MemoryRouter } from 'react-router-dom';
+import { store } from '../src/config/app/store';
+import { Provider } from 'react-redux';
 
 // pass ThemeProvider and array of your themes to decorator
 addDecorator(withThemes(ThemeProvider, [lightTheme, darkTheme]));
@@ -12,7 +15,11 @@ export const decorators = [
     (Story) => (
         <>
             <GlobalStyles />
-            <Story />
+            <Provider store={store}>
+                <MemoryRouter>
+                    <Story />
+                </MemoryRouter>
+            </Provider>
         </>
     ),
 ];
