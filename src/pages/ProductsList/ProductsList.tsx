@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Container from '../../components/Common/Container';
 import Spinner from '../../components/Spinner';
 import {
@@ -10,8 +10,10 @@ import {
 import Filters from '../../components/Filters';
 import FiltersMobile from '../../components/FiltersMobile';
 import FeaturedProductsGrid from '../../components/FeaturedProductsGrid';
-import { useGetProductsCategoriesQuery } from '../../services/api/apiSlice';
-import { featuredProducts } from '../../mocks/featuredProducts';
+import {
+    useGetProductsCategoriesQuery,
+    useGetProductsQuery,
+} from '../../services/api/apiSlice';
 
 const SpinnerWithWrappper = () => {
     return (
@@ -28,12 +30,27 @@ const SpinnerWithWrappper = () => {
 //TODO: Maybe some props are needed in the future
 // interface ProductsListProps {}
 const ProductsList = () => {
-    const [products, setProducts] = useState(featuredProducts.results);
+    const [page, setPage] = useState(1);
 
     const {
         data: productCategories,
         isLoading: productCategoriesIsLoading,
     } = useGetProductsCategoriesQuery();
+
+    const {
+        data: productsList,
+        isLoading: productListIsLoading,
+    } = useGetProductsQuery(page);
+
+    const [products, setProducts] = useState(
+        productsList?.results ? productsList.results : []
+    );
+
+    useEffect(() => {
+        if (productsList) {
+            setProducts(productsList.results);
+        }
+    }, [productsList]);
 
     return (
         <Container colorType="paper">
@@ -42,25 +59,46 @@ const ProductsList = () => {
                     {productCategories && (
                         <FiltersMobile
                             categories={productCategories.results}
-                            baseProducts={featuredProducts.results}
+                            baseProducts={
+                                productsList?.results
+                                    ? productsList.results
+                                    : []
+                            }
                             setParentProducts={setProducts}
                         />
                     )}
-                    {productCategoriesIsLoading && <SpinnerWithWrappper />}
                 </MobileFiltersContainer>
 
                 <DesktopFiltersContainer>
                     {productCategories && (
                         <Filters
                             categories={productCategories.results}
-                            baseProducts={featuredProducts.results}
+                            baseProducts={
+                                productsList?.results
+                                    ? productsList.results
+                                    : []
+                            }
                             setParentProducts={setProducts}
                         />
                     )}
                     {productCategoriesIsLoading && <SpinnerWithWrappper />}
                 </DesktopFiltersContainer>
-                <GridContainer>
-                    <FeaturedProductsGrid products={products} />
+                <GridContainer
+                    style={productListIsLoading ? { height: '100vh' } : {}}
+                >
+                    {!productListIsLoading && (
+                        <FeaturedProductsGrid products={products} />
+                    )}
+
+                    {productListIsLoading && (
+                        <Container
+                            flexCenter
+                            colorType="paper"
+                            style={{ height: '50vh' }}
+                        >
+                            <Spinner widthAndHeight="45px" />
+                        </Container>
+                    )}
                 </GridContainer>
             </ProductListContainer>
         </Container>

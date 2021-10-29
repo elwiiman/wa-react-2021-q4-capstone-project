@@ -11,7 +11,7 @@ import {
     TextImage,
     Image,
 } from './styled';
-import { shuffle } from '../../helpers/arraysHelpers';
+
 export interface CategoriesGridProps {
     categories: ResultsEntity[];
 }

@@ -22,6 +22,10 @@ export const furnitureApi = createApi({
             query: () =>
                 `https://wizeline-academy.cdn.prismic.io/api/v2/documents/search?ref=${apiRef}&q=%5B%5Bat(document.type%2C%20%22product%22)%5D%5D&q=%5B%5Bat(document.tags%2C%20%5B%22Featured%22%5D)%5D%5D&lang=en-us&pageSize=16`,
         }),
+        getProducts: builder.query<FeaturedProducts, number>({
+            query: (page = 1) =>
+                `https://wizeline-academy.cdn.prismic.io/api/v2/documents/search?ref=${apiRef}&q=%5B%5Bat(document.type%2C%20%22product%22)%5D%5D&lang=en-us&pageSize=12&page=${page}`,
+        }),
     }),
 });
 
@@ -31,4 +35,5 @@ export const {
     useGetFeaturedBannersQuery,
     useGetProductsCategoriesQuery,
     useGetFeaturedProductsQuery,
+    useGetProductsQuery,
 } = furnitureApi;

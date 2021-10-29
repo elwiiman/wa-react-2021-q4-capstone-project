@@ -17,7 +17,6 @@ export interface FeaturedProductProps {
 }
 
 const FeaturedProduct = ({ product: { data } }: FeaturedProductProps) => {
-    console.log('data product', data);
     const {
         category: { slug },
         mainimage: { url, alt },
