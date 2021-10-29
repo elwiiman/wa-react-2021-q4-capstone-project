@@ -14,6 +14,9 @@ import {
     useGetProductsCategoriesQuery,
     useGetProductsQuery,
 } from '../../services/api/apiSlice';
+import { useLocation } from 'react-router';
+import queryString from 'query-string';
+import { filterProductsByCategory } from '../../helpers/filtersHelpers';
 
 const SpinnerWithWrappper = () => {
     return (
@@ -31,6 +34,7 @@ const SpinnerWithWrappper = () => {
 // interface ProductsListProps {}
 const ProductsList = () => {
     const [page, setPage] = useState(1);
+    const { search } = useLocation();
 
     const {
         data: productCategories,
@@ -43,7 +47,7 @@ const ProductsList = () => {
     } = useGetProductsQuery(page);
 
     const [products, setProducts] = useState(
-        productsList?.results ? productsList.results : []
+        productsList ? productsList.results : []
     );
 
     useEffect(() => {
@@ -51,6 +55,36 @@ const ProductsList = () => {
             setProducts(productsList.results);
         }
     }, [productsList]);
+
+    useEffect(() => {
+        let parsedCategories: string[] = [];
+        if (search) {
+            const parsed = queryString.parse(search, {
+                arrayFormat: 'separator',
+                arrayFormatSeparator: '|',
+            });
+
+            console.log('parsed category', parsed.category);
+
+            if (!Array.isArray(parsed.category) && parsed.category !== null) {
+                parsedCategories = [parsed.category];
+            } else if (parsed.category === null) {
+                parsedCategories = [];
+            } else {
+                parsedCategories = [...parsed.category];
+            }
+        } else {
+            parsedCategories = [];
+        }
+        if (productsList) {
+            const filteredProducts = filterProductsByCategory(
+                parsedCategories,
+                productsList.results
+            );
+            setProducts(filteredProducts);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [productsList, search]);
 
     return (
         <Container colorType="paper">
@@ -64,7 +98,6 @@ const ProductsList = () => {
                                     ? productsList.results
                                     : []
                             }
-                            setParentProducts={setProducts}
                         />
                     )}
                 </MobileFiltersContainer>
@@ -78,7 +111,6 @@ const ProductsList = () => {
                                     ? productsList.results
                                     : []
                             }
-                            setParentProducts={setProducts}
                         />
                     )}
                     {productCategoriesIsLoading && <SpinnerWithWrappper />}

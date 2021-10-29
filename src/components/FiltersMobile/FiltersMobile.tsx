@@ -16,16 +16,9 @@ import Close from '../Icons/Close';
 interface FiltersMobileProps {
     categories: ResultsEntity[];
     baseProducts: ResultsEntityProducts[];
-    setParentProducts: React.Dispatch<
-        React.SetStateAction<ResultsEntityProducts[]>
-    >;
 }
 
-const FiltersMobile = ({
-    categories,
-    baseProducts,
-    setParentProducts,
-}: FiltersMobileProps) => {
+const FiltersMobile = ({ categories, baseProducts }: FiltersMobileProps) => {
     const [show, setShow] = useState(false);
 
     const toggleShow = () => {
@@ -52,7 +45,6 @@ const FiltersMobile = ({
                     <Filters
                         categories={categories}
                         baseProducts={baseProducts}
-                        setParentProducts={setParentProducts}
                     />
                 </FiltersWrapper>
             )}

@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { CheckboxContainer, FiltersTitle } from './styled';
 import { ResultsEntity } from '../../types/productCategories';
 import { ResultsEntity as ResultsEntityProducts } from '../../types/featuredProducts';
-import { filterProductsByCategory } from '../../helpers/filtersHelpers';
 import CustomCheckbox from '../CustomCheckbox';
 import queryString from 'query-string';
 import { useLocation } from 'react-router';
@@ -12,19 +11,12 @@ import ActionButton from '../ActionButton';
 interface FilterBarProps {
     categories: ResultsEntity[];
     baseProducts: ResultsEntityProducts[];
-    setParentProducts: React.Dispatch<
-        React.SetStateAction<ResultsEntityProducts[]>
-    >;
 }
 
-const Filters = ({
-    categories,
-    baseProducts,
-    setParentProducts,
-}: FilterBarProps) => {
+const Filters = ({ categories, baseProducts }: FilterBarProps) => {
     const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
     const history = useHistory();
-    const { pathname, search } = useLocation();
+    const { pathname } = useLocation();
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { checked } = e.target;
@@ -43,40 +35,12 @@ const Filters = ({
     };
 
     useEffect(() => {
-        if (search) {
-            const parsed = queryString.parse(search, {
-                arrayFormat: 'separator',
-                arrayFormatSeparator: '|',
-            });
-
-            let parsedCategories: string[] = [];
-
-            if (!Array.isArray(parsed.category) && parsed.category !== null) {
-                parsedCategories = [parsed.category];
-            } else if (parsed.category === null) {
-                parsedCategories = [];
-            } else {
-                parsedCategories = [...parsed.category];
-            }
-
-            setSelectedFilters(parsedCategories);
-        }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    useEffect(() => {
         const query = queryString.stringify(
             { category: selectedFilters },
             { arrayFormat: 'separator', arrayFormatSeparator: '|' }
         );
         history.push(`${pathname}?${query}`);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [selectedFilters]);
 
-    useEffect(() => {
-        setParentProducts(
-            filterProductsByCategory(selectedFilters, baseProducts)
-        );
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedFilters]);
 
