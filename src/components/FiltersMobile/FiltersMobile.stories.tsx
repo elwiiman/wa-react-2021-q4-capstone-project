@@ -17,5 +17,4 @@ const Template: ComponentStory<typeof FiltersMobile> = (args) => {
 export const Default = Template.bind({});
 Default.args = {
     categories: productCategories.results,
-    baseProducts: featuredProducts.results,
 };

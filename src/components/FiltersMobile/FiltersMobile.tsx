@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { ResultsEntity } from '../../types/productCategories';
-import { ResultsEntity as ResultsEntityProducts } from '../../types/featuredProducts';
 import {
     FiltersMobileContainer,
     FilterIconContainer,
@@ -15,10 +14,9 @@ import Close from '../Icons/Close';
 
 interface FiltersMobileProps {
     categories: ResultsEntity[];
-    baseProducts: ResultsEntityProducts[];
 }
 
-const FiltersMobile = ({ categories, baseProducts }: FiltersMobileProps) => {
+const FiltersMobile = ({ categories }: FiltersMobileProps) => {
     const [show, setShow] = useState(false);
 
     const toggleShow = () => {
@@ -42,10 +40,7 @@ const FiltersMobile = ({ categories, baseProducts }: FiltersMobileProps) => {
                             onClick={() => toggleShow()}
                         />
                     </CloseButtonContainer>
-                    <Filters
-                        categories={categories}
-                        baseProducts={baseProducts}
-                    />
+                    <Filters categories={categories} />
                 </FiltersWrapper>
             )}
         </FiltersMobileContainer>

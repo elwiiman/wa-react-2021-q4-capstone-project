@@ -15,7 +15,6 @@ import {
     useGetProductsQuery,
 } from '../../services/api/apiSlice';
 import { useLocation } from 'react-router';
-import queryString from 'query-string';
 import { filterProductsByCategory } from '../../helpers/filtersHelpers';
 import { parseCategoriesParams } from '../../helpers/queryParamsHelpers';
 
@@ -79,27 +78,13 @@ const ProductsList = () => {
             <ProductListContainer>
                 <MobileFiltersContainer>
                     {productCategories && (
-                        <FiltersMobile
-                            categories={productCategories.results}
-                            baseProducts={
-                                productsList?.results
-                                    ? productsList.results
-                                    : []
-                            }
-                        />
+                        <FiltersMobile categories={productCategories.results} />
                     )}
                 </MobileFiltersContainer>
 
                 <DesktopFiltersContainer>
                     {productCategories && (
-                        <Filters
-                            categories={productCategories.results}
-                            baseProducts={
-                                productsList?.results
-                                    ? productsList.results
-                                    : []
-                            }
-                        />
+                        <Filters categories={productCategories.results} />
                     )}
                     {productCategoriesIsLoading && <SpinnerWithWrappper />}
                 </DesktopFiltersContainer>

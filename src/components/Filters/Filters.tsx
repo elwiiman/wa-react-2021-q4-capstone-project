@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { CheckboxContainer, FiltersTitle } from './styled';
 import { ResultsEntity } from '../../types/productCategories';
-import { ResultsEntity as ResultsEntityProducts } from '../../types/featuredProducts';
 import CustomCheckbox from '../CustomCheckbox';
 import queryString from 'query-string';
 import { useLocation } from 'react-router';
@@ -11,10 +10,9 @@ import { parseCategoriesParams } from '../../helpers/queryParamsHelpers';
 
 interface FilterBarProps {
     categories: ResultsEntity[];
-    baseProducts: ResultsEntityProducts[];
 }
 
-const Filters = ({ categories, baseProducts }: FilterBarProps) => {
+const Filters = ({ categories }: FilterBarProps) => {
     const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
     const history = useHistory();
     const { pathname, search } = useLocation();
