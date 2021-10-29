@@ -7,6 +7,7 @@ import queryString from 'query-string';
 import { useLocation } from 'react-router';
 import { useHistory } from 'react-router-dom';
 import ActionButton from '../ActionButton';
+import { parseCategoriesParams } from '../../helpers/queryParamsHelpers';
 
 interface FilterBarProps {
     categories: ResultsEntity[];
@@ -16,7 +17,7 @@ interface FilterBarProps {
 const Filters = ({ categories, baseProducts }: FilterBarProps) => {
     const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
     const history = useHistory();
-    const { pathname } = useLocation();
+    const { pathname, search } = useLocation();
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { checked } = e.target;
@@ -43,6 +44,14 @@ const Filters = ({ categories, baseProducts }: FilterBarProps) => {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedFilters]);
+
+    useEffect(() => {
+        if (search) {
+            const parsedCategories = parseCategoriesParams(search);
+            setSelectedFilters(parsedCategories);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <section>

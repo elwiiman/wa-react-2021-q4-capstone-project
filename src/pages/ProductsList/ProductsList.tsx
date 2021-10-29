@@ -17,6 +17,7 @@ import {
 import { useLocation } from 'react-router';
 import queryString from 'query-string';
 import { filterProductsByCategory } from '../../helpers/filtersHelpers';
+import { parseCategoriesParams } from '../../helpers/queryParamsHelpers';
 
 const SpinnerWithWrappper = () => {
     return (
@@ -59,20 +60,7 @@ const ProductsList = () => {
     useEffect(() => {
         let parsedCategories: string[] = [];
         if (search) {
-            const parsed = queryString.parse(search, {
-                arrayFormat: 'separator',
-                arrayFormatSeparator: '|',
-            });
-
-            console.log('parsed category', parsed.category);
-
-            if (!Array.isArray(parsed.category) && parsed.category !== null) {
-                parsedCategories = [parsed.category];
-            } else if (parsed.category === null) {
-                parsedCategories = [];
-            } else {
-                parsedCategories = [...parsed.category];
-            }
+            parsedCategories = parseCategoriesParams(search);
         } else {
             parsedCategories = [];
         }
