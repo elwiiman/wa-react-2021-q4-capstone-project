@@ -50,8 +50,8 @@ export const PaginatorItem = styled.li<PaginatorItemProps>`
             ? 'pointer-events: none; background-color: transparent; cursor: default'
             : ''}
 
-${fontTypes.caption}
-@media ${device.tablet} {
+    ${fontTypes.caption}
+    @media ${device.tablet} {
         ${fontTypes.paragraph}
     }
 `;
