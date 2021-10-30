@@ -7,6 +7,7 @@ import {
     DesktopFiltersContainer,
     MobileFiltersContainer,
     GridContainer,
+    PaginatorContainer,
 } from './styled';
 import Filters from '../../components/Filters';
 import FiltersMobile from '../../components/FiltersMobile';
@@ -105,19 +106,20 @@ const ProductsList = () => {
                             <Spinner widthAndHeight="45px" />
                         </Container>
                     )}
+                    <PaginatorContainer>
+                        {productsList && (
+                            <Paginator
+                                totalCount={productsList.total_results_size}
+                                currentPage={page}
+                                pageSize={productsList.results_per_page}
+                                onPageChange={(newPage) => {
+                                    setPage(newPage);
+                                }}
+                            />
+                        )}
+                    </PaginatorContainer>
                 </GridContainer>
             </ProductListContainer>
-
-            {productsList && (
-                <Paginator
-                    totalCount={productsList.total_results_size}
-                    currentPage={page}
-                    pageSize={productsList.results_per_page}
-                    onPageChange={(newPage) => {
-                        setPage(newPage);
-                    }}
-                />
-            )}
         </Container>
     );
 };

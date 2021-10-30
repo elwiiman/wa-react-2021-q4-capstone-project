@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { fontTypes } from '../../config/baseFont';
 
 interface ArrowProps {
     side: 'left' | 'right';
@@ -47,6 +48,8 @@ export const PaginatorItem = styled.li<PaginatorItemProps>`
         props.disabled
             ? 'pointer-events: none; background-color: transparent; cursor: default'
             : ''}
+
+    ${fontTypes.paragraph}
 `;
 
 export const Arrow = styled.div<ArrowProps>`
