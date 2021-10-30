@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Container from '../../components/Common/Container';
 import Spinner from '../../components/Spinner';
+import Paginator from '../../components/Paginator';
 import {
     ProductListContainer,
     DesktopFiltersContainer,
@@ -106,6 +107,17 @@ const ProductsList = () => {
                     )}
                 </GridContainer>
             </ProductListContainer>
+
+            {productsList && (
+                <Paginator
+                    totalCount={productsList.total_results_size}
+                    currentPage={page}
+                    pageSize={productsList.results_per_page}
+                    onPageChange={(newPage) => {
+                        setPage(newPage);
+                    }}
+                />
+            )}
         </Container>
     );
 };
