@@ -44,15 +44,16 @@ const Paginator = ({
             <PaginatorItem onClick={onPrevious} disabled={currentPage === 1}>
                 <Arrow side="left" disabled={currentPage === 1} />
             </PaginatorItem>
-            {paginationRange.map((pageNumber) => {
+            {paginationRange.map((pageNumber, index) => {
                 // If the pageItem is a DOT, render the DOTS unicode character
                 if (pageNumber === DOTS) {
-                    return <li>&#8230;</li>;
+                    return <li key={index}>&#8230;</li>;
                 }
 
                 // Render our Page Pills
                 return (
                     <PaginatorItem
+                        key={index}
                         onClick={() => onPageChange(Number(pageNumber))}
                         selected={Number(pageNumber) === currentPage}
                     >
