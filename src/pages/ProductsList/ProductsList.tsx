@@ -17,8 +17,12 @@ import {
     useGetProductsQuery,
 } from '../../services/api/apiSlice';
 import { useLocation } from 'react-router';
+import { useHistory } from 'react-router';
 import { filterProductsByCategory } from '../../helpers/filtersHelpers';
-import { parseCategoriesParams } from '../../helpers/queryParamsHelpers';
+import {
+    parseCategoriesParams,
+    getCategoriesParams,
+} from '../../helpers/queryParamsHelpers';
 
 const SpinnerWithWrappper = () => {
     return (
@@ -36,7 +40,8 @@ const SpinnerWithWrappper = () => {
 // interface ProductsListProps {}
 const ProductsList = () => {
     const [page, setPage] = useState(1);
-    const { search } = useLocation();
+    const { search, pathname } = useLocation();
+    const history = useHistory();
 
     const {
         data: productCategories,
@@ -65,6 +70,7 @@ const ProductsList = () => {
         } else {
             parsedCategories = [];
         }
+
         if (productsList) {
             const filteredProducts = filterProductsByCategory(
                 parsedCategories,
@@ -114,6 +120,11 @@ const ProductsList = () => {
                                 pageSize={productsList.results_per_page}
                                 onPageChange={(newPage) => {
                                     setPage(newPage);
+                                    history.push(
+                                        `${pathname}?${getCategoriesParams(
+                                            search
+                                        )}p=${newPage}`
+                                    );
                                 }}
                             />
                         )}
