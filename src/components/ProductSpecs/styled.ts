@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { fontTypes } from '../../config/baseFont';
 
 interface TableData {
     bold?: boolean;
