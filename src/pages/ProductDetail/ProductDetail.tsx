@@ -35,8 +35,6 @@ const ProductDetail = () => {
         isLoading: isLoadingProductResult,
     } = useGetProductByIdQuery(id);
 
-    console.log('productResult', productResult);
-
     if (isLoadingProductResult && !productResult)
         return (
             <Container colorType="paper" flexCenter style={{ height: '50vh' }}>

@@ -8,6 +8,7 @@ interface IContainer {
     noPaddingBottom?: boolean;
     marginTop?: string;
     width?: string;
+    flexDirection?: string;
 }
 
 export default styled.div<IContainer>`
@@ -27,4 +28,7 @@ export default styled.div<IContainer>`
         props.flexCenter
             ? 'display: flex; justify-content: center; align-items: center;'
             : ''}
+
+    ${(props) =>
+        props.flexDirection ? `flex-direction:${props.flexDirection}` : ''}
 `;

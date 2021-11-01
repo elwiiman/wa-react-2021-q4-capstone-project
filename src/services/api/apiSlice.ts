@@ -6,6 +6,11 @@ import { FeaturedProducts } from '../../types/featuredProducts';
 import { ProductById } from '../../types/productById';
 import { apiRef, baseUrl } from '../../config/app/constants';
 
+interface ISearch {
+    term: string | string[] | null;
+    page: number;
+}
+
 // Define a service using a base URL and expected endpoints
 export const furnitureApi = createApi({
     reducerPath: 'furnitureApi',
@@ -31,6 +36,11 @@ export const furnitureApi = createApi({
             query: (id) =>
                 `/documents/search?ref=${apiRef}&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22${id}%22%29+%5D%5D`,
         }),
+
+        searchProducts: builder.query<FeaturedProducts, ISearch>({
+            query: (search) =>
+                `/documents/search?ref=${apiRef}&q=%5B%5Bat(document.type%2C%20%22product%22)%5D%5D&q=%5B%5Bfulltext(document%2C%20%22${search.term}%22)%5D%5D&lang=en-us&pageSize=20&page=${search.page}`,
+        }),
     }),
 });
 
@@ -42,4 +52,5 @@ export const {
     useGetFeaturedProductsQuery,
     useGetProductsQuery,
     useGetProductByIdQuery,
+    useSearchProductsQuery,
 } = furnitureApi;

@@ -2,6 +2,7 @@ import { GlobalStyles } from './config/global.styles';
 import Home from './pages/Home';
 import ProductsList from './pages/ProductsList';
 import ProductDetail from './pages/ProductDetail';
+import Search from './pages/Search';
 import ThemeProvider from './context/ThemeProvider';
 import MainLayout from './Layouts/MainLayout/MainLayout';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -23,6 +24,7 @@ function App() {
                             component={ProductsList}
                         />
                         <Route path="/product/:id" component={ProductDetail} />
+                        <Route path="/search" component={Search} />
                     </Switch>
                 </MainLayout>
             </ThemeProvider>
