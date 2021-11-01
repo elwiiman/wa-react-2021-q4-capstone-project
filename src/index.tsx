@@ -6,6 +6,22 @@ import { store } from './config/app/store';
 import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 
+// swiper bundle styles
+import 'swiper/swiper-bundle.min.css';
+
+// swiper core styles
+import 'swiper/swiper.min.css';
+
+// modules styles
+import 'swiper/components/navigation/navigation.min.css';
+import 'swiper/components/pagination/pagination.min.css';
+
+// import Swiper core and required modules
+import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper';
+
+// install Swiper modules
+SwiperCore.use([Autoplay, Pagination, Navigation]);
+
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>

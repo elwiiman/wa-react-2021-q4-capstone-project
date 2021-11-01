@@ -13,6 +13,8 @@ interface SimpleButtonProps {
      * An action to be executed by the button
      */
     onClick: (...args: any[]) => void;
+
+    style?: any;
 }
 
 /**
@@ -22,10 +24,12 @@ const SimpleButton = ({
     label,
     enablePaperBackground,
     onClick,
+    style = {},
 }: SimpleButtonProps) => {
     return (
         <>
             <StyledButton
+                style={{ ...style }}
                 onClick={onClick}
                 enablePaperBackground={enablePaperBackground}
             >

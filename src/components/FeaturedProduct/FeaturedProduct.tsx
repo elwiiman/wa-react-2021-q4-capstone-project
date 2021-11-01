@@ -16,12 +16,11 @@ export interface FeaturedProductProps {
     product: ResultsEntity;
 }
 
-const FeaturedProduct = ({ product: { data } }: FeaturedProductProps) => {
+const FeaturedProduct = ({ product: { data, id } }: FeaturedProductProps) => {
     const {
         category: { slug },
         mainimage: { url, alt },
         price,
-        sku,
     } = data;
 
     let { name } = data;
@@ -32,14 +31,14 @@ const FeaturedProduct = ({ product: { data } }: FeaturedProductProps) => {
 
     return (
         <OveralContainer>
-            <Link to={`/product/${sku}`}>
+            <Link to={`/product/${id}`}>
                 <FeaturedProductImageContainer>
                     <img src={url} alt={alt} />
                 </FeaturedProductImageContainer>
             </Link>
 
             <InfoContainer>
-                <Link to={`/product/${sku}`}>
+                <Link to={`/product/${id}`}>
                     <ItemInfoName>{name}</ItemInfoName>
                 </Link>
                 <ItemInfo>Category : {slug}</ItemInfo>

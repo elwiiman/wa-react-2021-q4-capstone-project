@@ -28,7 +28,7 @@ export const StyledButton = styled.button<IStyledButton>`
 
         return `background: ${props['theme'][color]['main']};  
                color: ${props.theme[color]['contrastText']};
-               border: 2px solid ${props.theme[color]['contrastText']}`;
+               border: 2px solid ${props.theme[color]['contrastBorder']}`;
     }};
 
     ${fontTypes.captionBold}

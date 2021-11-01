@@ -3,22 +3,6 @@ import { ResultsEntity } from '../../types/featuredBanners';
 import { StyledImage, SliderContainer, Description } from './styled';
 import { takefirstCharacters } from '../../helpers/stringHelpers';
 
-// swiper bundle styles
-import 'swiper/swiper-bundle.min.css';
-
-// swiper core styles
-import 'swiper/swiper.min.css';
-
-// modules styles
-import 'swiper/components/navigation/navigation.min.css';
-import 'swiper/components/pagination/pagination.min.css';
-
-// import Swiper core and required modules
-import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper';
-
-// install Swiper modules
-SwiperCore.use([Autoplay, Pagination, Navigation]);
-
 interface SliderProps {
     /**
      * An array of featured banners

@@ -3,6 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { FeaturedBanners } from '../../types/featuredBanners';
 import { ProductCategories } from '../../types/productCategories';
 import { FeaturedProducts } from '../../types/featuredProducts';
+import { ProductById } from '../../types/productById';
 import { apiRef, baseUrl } from '../../config/app/constants';
 
 // Define a service using a base URL and expected endpoints
@@ -20,11 +21,15 @@ export const furnitureApi = createApi({
         }),
         getFeaturedProducts: builder.query<FeaturedProducts, void>({
             query: () =>
-                `https://wizeline-academy.cdn.prismic.io/api/v2/documents/search?ref=${apiRef}&q=%5B%5Bat(document.type%2C%20%22product%22)%5D%5D&q=%5B%5Bat(document.tags%2C%20%5B%22Featured%22%5D)%5D%5D&lang=en-us&pageSize=16`,
+                `/documents/search?ref=${apiRef}&q=%5B%5Bat(document.type%2C%20%22product%22)%5D%5D&q=%5B%5Bat(document.tags%2C%20%5B%22Featured%22%5D)%5D%5D&lang=en-us&pageSize=16`,
         }),
         getProducts: builder.query<FeaturedProducts, number>({
             query: (page = 1) =>
-                `https://wizeline-academy.cdn.prismic.io/api/v2/documents/search?ref=${apiRef}&q=%5B%5Bat(document.type%2C%20%22product%22)%5D%5D&lang=en-us&pageSize=12&page=${page}`,
+                `/documents/search?ref=${apiRef}&q=%5B%5Bat(document.type%2C%20%22product%22)%5D%5D&lang=en-us&pageSize=12&page=${page}`,
+        }),
+        getProductById: builder.query<ProductById, string>({
+            query: (id) =>
+                `/documents/search?ref=${apiRef}&q=%5B%5B%3Ad+%3D+at%28document.id%2C+%22${id}%22%29+%5D%5D`,
         }),
     }),
 });
@@ -36,4 +41,5 @@ export const {
     useGetProductsCategoriesQuery,
     useGetFeaturedProductsQuery,
     useGetProductsQuery,
+    useGetProductByIdQuery,
 } = furnitureApi;

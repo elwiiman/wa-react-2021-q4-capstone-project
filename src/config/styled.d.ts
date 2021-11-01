@@ -7,14 +7,17 @@ declare module 'styled-components' {
         primary: {
             main: string;
             contrastText: string;
+            contrastBorder: string;
         };
         secondary: {
             main: string;
             contrastText: string;
+            contrastBorder: string;
         };
         tertiary: {
             main: string;
             contrastText: string;
+            contrastBorder: string;
         };
         error: {
             main: string;

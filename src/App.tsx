@@ -22,7 +22,7 @@ function App() {
                             path="/products"
                             component={ProductsList}
                         />
-                        <Route path="/product/:sku" component={ProductDetail} />
+                        <Route path="/product/:id" component={ProductDetail} />
                     </Switch>
                 </MainLayout>
             </ThemeProvider>
