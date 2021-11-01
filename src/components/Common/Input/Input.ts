@@ -14,7 +14,7 @@ export interface Iinput {
 
 export default styled.input<Iinput>`
     border-radius: ${(props) => (props.radius ? props.radius : '5px')};
-    color: ${(props) => props.theme.text.primary};
+    color: ${(props) => props.theme.input.text};
     border: 1px solid
         ${(props) =>
             props.error ? props.theme.line.error : props.theme.line.primary};
@@ -27,5 +27,6 @@ export default styled.input<Iinput>`
     width: 100%;
     padding: 1em;
     outline: none;
+    background-color: ${(props) => props.theme.input.background};
     ${fontTypes.paragraph};
 `;

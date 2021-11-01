@@ -4,6 +4,7 @@ import ActionButton from '../../components/ActionButton';
 import QuantityButton from '../../components/QuantityButton';
 import ProductInfo from '../../components/ProductInfo';
 import ProductTags from '../../components/ProductTags';
+import ProductSpecs from '../../components/ProductSpecs';
 import Container from '../../components/Common/Container';
 import {
     HalfContainer,
@@ -12,6 +13,7 @@ import {
     ActionButtonContainer,
     QuantityTag,
     TagsContainer,
+    Subtitle,
 } from './styled';
 import { useGetProductByIdQuery } from '../../services/api/apiSlice';
 import { useParams } from 'react-router';
@@ -32,6 +34,8 @@ const ProductDetail = () => {
         data: productResult,
         isLoading: isLoadingProductResult,
     } = useGetProductByIdQuery(id);
+
+    console.log('productResult', productResult);
 
     if (isLoadingProductResult && !productResult) return <Spinner />;
     if (productResult)
@@ -73,6 +77,14 @@ const ProductDetail = () => {
                                     }
                                 />
                             </ActionButtonContainer>
+                        </Container>
+
+                        <Subtitle>Specifications</Subtitle>
+                        <Container
+                            colorType="secondary_opac"
+                            width="fit-content"
+                        >
+                            <ProductSpecs product={productResult.results[0]} />
                         </Container>
                     </HalfContainer>
                 </OverallContainer>

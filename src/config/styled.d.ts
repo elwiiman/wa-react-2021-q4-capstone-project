@@ -48,5 +48,10 @@ declare module 'styled-components' {
             main: string;
             back: string;
         };
+
+        input: {
+            background: string;
+            text: string;
+        };
     }
 }

@@ -44,6 +44,11 @@ export const lightTheme = {
         main: '#307AD3',
         back: '#D3DCE8',
     },
+
+    input: {
+        background: '#FFF',
+        text: '#324462',
+    },
 };
 
 export const darkTheme = {
@@ -90,5 +95,10 @@ export const darkTheme = {
     spinner: {
         main: '#000c0c',
         back: '#F2F6F6',
+    },
+
+    input: {
+        background: '#FFF',
+        text: '#414146',
     },
 };

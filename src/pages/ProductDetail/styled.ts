@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { device } from '../../config/breakpoints';
+import { fontTypes } from '../../config/baseFont';
 
 export const OverallContainer = styled.div`
     display: flex;
@@ -42,4 +43,15 @@ export const TagsContainer = styled.div`
     padding-top: 0.2em;
     margin-bottom: 1em;
     color: ${(props) => props.theme.text.primary};
+`;
+
+export const Subtitle = styled.p`
+    color: ${(props) => props.theme.text.primary};
+    margin-top: 1em;
+    margin-bottom: 0.2em;
+
+    ${fontTypes.subtitleMobile}
+    @media ${device.tablet} {
+        ${fontTypes.subtitleDesktop}
+    }
 `;
