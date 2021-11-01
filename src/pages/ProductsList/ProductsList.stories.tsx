@@ -1,16 +1,19 @@
 import { ComponentMeta, Story } from '@storybook/react';
 import { MemoryRouter } from 'react-router-dom';
 
-import Home from './Home';
+import ProductsList from './ProductsList';
 
 export default {
-    title: 'Pages/Home',
-    component: Home,
-} as ComponentMeta<typeof Home>;
+    title: 'Pages/ProductsList',
+    parameters: {
+        layout: 'fullscreen',
+    },
+    component: ProductsList,
+} as ComponentMeta<typeof ProductsList>;
 
 const Template: Story = () => (
     <MemoryRouter>
-        <Home />
+        <ProductsList />
     </MemoryRouter>
 );
 

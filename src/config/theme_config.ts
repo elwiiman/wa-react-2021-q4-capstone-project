@@ -9,8 +9,8 @@ export const lightTheme = {
     },
 
     tertiary: {
-        main: '#0E2345',
-        contrast: '',
+        main: '#fff',
+        contrastText: '#024fd4',
     },
     error: {
         main: '#000',
@@ -41,7 +41,7 @@ export const lightTheme = {
 
 export const darkTheme = {
     primary: {
-        main: '#fff',
+        main: '#000',
         contrastText: '#FFF',
     },
     secondary: {
@@ -50,7 +50,7 @@ export const darkTheme = {
     },
     tertiary: {
         main: '',
-        contrast: '',
+        contrastText: '',
     },
     error: {
         main: '#000',

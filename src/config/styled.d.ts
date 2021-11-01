@@ -14,7 +14,7 @@ declare module 'styled-components' {
         };
         tertiary: {
             main: string;
-            contrast: string;
+            contrastText: string;
         };
         error: {
             main: string;

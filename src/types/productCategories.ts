@@ -19,7 +19,7 @@ export interface ResultsEntity {
     tags?: null[] | null;
     first_publication_date: string;
     last_publication_date: string;
-    slugs?: string[] | null;
+    slugs: string[];
     linked_documents?: null[] | null;
     lang: string;
     alternate_languages?: AlternateLanguagesEntity[] | null;
