@@ -28,6 +28,7 @@ const ProductGallery = ({ product: { data } }: ProductGalleryProps) => {
         if (images.length > 0) {
             setCurrenPhoto(images[0].image);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const choosePhoto = (photo: Image) => {
