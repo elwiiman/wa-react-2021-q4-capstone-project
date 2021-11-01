@@ -18,6 +18,7 @@ export const StyledTh = styled.th`
     border-right: 1px solid ${(props) => props.theme.line.primary};
     padding: 0.5em;
     text-align: left;
+    vertical-align: middle;
 `;
 
 export const StyledTr = styled.tr``;

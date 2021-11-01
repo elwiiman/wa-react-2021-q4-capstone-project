@@ -37,7 +37,12 @@ const ProductDetail = () => {
 
     console.log('productResult', productResult);
 
-    if (isLoadingProductResult && !productResult) return <Spinner />;
+    if (isLoadingProductResult && !productResult)
+        return (
+            <Container colorType="paper" flexCenter style={{ height: '50vh' }}>
+                <Spinner widthAndHeight="45px" />
+            </Container>
+        );
     if (productResult)
         return (
             <Container noPaddingTop noPaddingBottom>
