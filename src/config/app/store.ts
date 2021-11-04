@@ -6,13 +6,13 @@ import {
 } from '@reduxjs/toolkit';
 import type { PreloadedState } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import { cartSlice } from '../../features/cartSlice';
+import cartSlice from '../../features/cartSlice';
 import { furnitureApi } from '../../services/api/apiSlice';
 
 const rootReducer = combineReducers({
     // Add the generated reducer as a specific top-level slice
     [furnitureApi.reducerPath]: furnitureApi.reducer,
-    cart: cartSlice.reducer,
+    cart: cartSlice,
 });
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {

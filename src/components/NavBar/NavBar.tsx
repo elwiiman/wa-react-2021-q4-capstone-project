@@ -1,5 +1,8 @@
 import { FunctionComponent, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { useAppSelector } from '../../config/app/hooks';
+import { selectTotalProductsInCart } from '../../features/cartSlice';
+import CartStatus from '../CartStatus';
 import Logo from '../Logo';
 import Input from '../Common/Input';
 import CartIcon from '../Icons/Cart';
@@ -27,12 +30,15 @@ interface NavBarProps {
 const NavBar: FunctionComponent<NavBarProps> = ({ doSearch }) => {
     const search = useInput('');
     const { isDarkTheme, toggleTheme } = useContext(ThemeContext);
+    const numberOfProducts = useAppSelector(selectTotalProductsInCart);
 
     const submitSearch = (e: React.SyntheticEvent) => {
         e.preventDefault();
         doSearch(search.value);
         search.setValue('');
     };
+
+    console.log('numberOfProducts', numberOfProducts);
 
     return (
         <StyledNav>
@@ -60,7 +66,9 @@ const NavBar: FunctionComponent<NavBarProps> = ({ doSearch }) => {
                         />
                     )}
 
-                    <SimpleButton label={<CartIcon />} onClick={() => {}} />
+                    <div>
+                        <CartStatus totalCount={numberOfProducts} />
+                    </div>
                 </CartContainerMobile>
             </MainContainer>
 
@@ -90,7 +98,9 @@ const NavBar: FunctionComponent<NavBarProps> = ({ doSearch }) => {
                         }}
                     />
                 )}
-                <SimpleButton label={<CartIcon />} onClick={() => {}} />
+                <div>
+                    <CartStatus totalCount={numberOfProducts} />
+                </div>
             </CartContainer>
         </StyledNav>
     );

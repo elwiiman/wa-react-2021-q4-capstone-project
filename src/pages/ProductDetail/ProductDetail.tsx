@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { useAppSelector, useAppDispatch } from '../../config/app/hooks';
 import { addToCart } from '../../features/cartSlice';
-import { RootState } from '../../config/app/store';
 import ProductGallery from '../../components/ProductGallery';
 import ActionButton from '../../components/ActionButton';
 import QuantityButton from '../../components/QuantityButton';
