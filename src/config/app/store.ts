@@ -6,11 +6,13 @@ import {
 } from '@reduxjs/toolkit';
 import type { PreloadedState } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
+import { cartSlice } from '../../features/cartSlice';
 import { furnitureApi } from '../../services/api/apiSlice';
 
 const rootReducer = combineReducers({
     // Add the generated reducer as a specific top-level slice
     [furnitureApi.reducerPath]: furnitureApi.reducer,
+    cart: cartSlice.reducer,
 });
 
 export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
@@ -20,6 +22,7 @@ export const setupStore = (preloadedState?: PreloadedState<RootState>) => {
             // adding the api middleware enables caching, invalidation, polling and other features of `rtk-query`
             getDefaultMiddleware().concat(furnitureApi.middleware),
         preloadedState,
+        devTools: true,
     });
 };
 

@@ -1,4 +1,8 @@
 import { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from '../../config/app/hooks';
+import { addToCart } from '../../features/cartSlice';
+import { RootState } from '../../config/app/store';
 import ProductGallery from '../../components/ProductGallery';
 import ActionButton from '../../components/ActionButton';
 import QuantityButton from '../../components/QuantityButton';
@@ -29,6 +33,10 @@ interface ProductDetailParams {
 const ProductDetail = () => {
     const [quantity, setQuantity] = useState(1);
     const { id } = useParams<ProductDetailParams>();
+    const products = useAppSelector((state) => state.cart.products);
+    const dispatch = useAppDispatch();
+
+    console.log('products redux!', products);
 
     const {
         data: productResult,
@@ -76,7 +84,14 @@ const ProductDetail = () => {
                                     label="Add to Cart"
                                     onClick={
                                         // TODO: make add to car functionality
-                                        () => {}
+                                        () => {
+                                            dispatch(
+                                                addToCart({
+                                                    ...productResult.results[0],
+                                                    quantity,
+                                                })
+                                            );
+                                        }
                                     }
                                 />
                             </ActionButtonContainer>
