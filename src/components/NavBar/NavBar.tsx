@@ -5,7 +5,6 @@ import { selectTotalProductsInCart } from '../../features/cartSlice';
 import CartStatus from '../CartStatus';
 import Logo from '../Logo';
 import Input from '../Common/Input';
-import CartIcon from '../Icons/Cart';
 import SearchIcon from '../Icons/Search';
 import Sun from '../Icons/Sun';
 import Moon from '../Icons/Moon';

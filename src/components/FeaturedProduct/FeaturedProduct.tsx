@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ResultsEntity } from '../../types/featuredProducts';
+import { useAppDispatch } from '../../config/app/hooks';
+import { addToCart } from '../../features/cartSlice';
 import {
     OveralContainer,
     FeaturedProductImageContainer,
@@ -16,7 +18,10 @@ export interface FeaturedProductProps {
     product: ResultsEntity;
 }
 
-const FeaturedProduct = ({ product: { data, id } }: FeaturedProductProps) => {
+const FeaturedProduct = (props: FeaturedProductProps) => {
+    const { product } = props;
+    const { data, id } = props.product;
+    const dispatch = useAppDispatch();
     const {
         category: { slug },
         mainimage: { url, alt },
@@ -49,10 +54,14 @@ const FeaturedProduct = ({ product: { data, id } }: FeaturedProductProps) => {
                 <ActionButton
                     color="tertiary"
                     label="Add to Cart"
-                    onClick={
-                        //TODO: implemente add to car function
-                        () => {}
-                    }
+                    onClick={() => {
+                        dispatch(
+                            addToCart({
+                                ...product,
+                                quantity: 1,
+                            })
+                        );
+                    }}
                 />
             </AddToCartButtonContainer>
         </OveralContainer>

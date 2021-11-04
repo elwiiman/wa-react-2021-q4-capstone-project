@@ -80,17 +80,14 @@ const ProductDetail = () => {
                                 <ActionButton
                                     color="secondary"
                                     label="Add to Cart"
-                                    onClick={
-                                        // TODO: make add to car functionality
-                                        () => {
-                                            dispatch(
-                                                addToCart({
-                                                    ...productResult.results[0],
-                                                    quantity,
-                                                })
-                                            );
-                                        }
-                                    }
+                                    onClick={() => {
+                                        dispatch(
+                                            addToCart({
+                                                ...productResult.results[0],
+                                                quantity,
+                                            })
+                                        );
+                                    }}
                                 />
                             </ActionButtonContainer>
                         </Container>
