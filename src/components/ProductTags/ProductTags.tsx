@@ -7,8 +7,8 @@ interface ProductTagsProps {
 const ProductTags = ({ product: { tags } }: ProductTagsProps) => {
     return (
         <PillContainer>
-            {tags?.map((tag) => (
-                <Pill>{tag}</Pill>
+            {tags?.map((tag, index) => (
+                <Pill key={index}>{tag}</Pill>
             ))}
         </PillContainer>
     );

@@ -9,16 +9,22 @@ const ProductSpecs = ({ product: { data } }: ProductSpecsProps) => {
 
     return (
         <StyledTable>
-            {specs?.map((spec, index) => (
-                <StyledTr key={index}>
-                    <StyledTh style={index === 0 ? { borderTop: 'none' } : {}}>
-                        {spec.spec_name}
-                    </StyledTh>
-                    <StyledTd style={index === 0 ? { borderTop: 'none' } : {}}>
-                        {spec.spec_value}
-                    </StyledTd>
-                </StyledTr>
-            ))}
+            <tbody>
+                {specs?.map((spec, index) => (
+                    <StyledTr key={index}>
+                        <StyledTh
+                            style={index === 0 ? { borderTop: 'none' } : {}}
+                        >
+                            {spec.spec_name}
+                        </StyledTh>
+                        <StyledTd
+                            style={index === 0 ? { borderTop: 'none' } : {}}
+                        >
+                            {spec.spec_value}
+                        </StyledTd>
+                    </StyledTr>
+                ))}
+            </tbody>
         </StyledTable>
     );
 };

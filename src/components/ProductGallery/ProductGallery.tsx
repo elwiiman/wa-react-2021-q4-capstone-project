@@ -49,8 +49,9 @@ const ProductGallery = ({ product: { data } }: ProductGalleryProps) => {
             </GalleryPhotoContainer>
 
             <PhotoCarrousel>
-                {images.map(({ image }) => (
+                {images.map(({ image }, index) => (
                     <SmallPhoto
+                        key={index}
                         loading="lazy"
                         src={image.url}
                         alt="product-item"
