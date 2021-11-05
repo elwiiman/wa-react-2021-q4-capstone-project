@@ -88,6 +88,9 @@ const ProductDetail = () => {
                                             })
                                         );
                                     }}
+                                    disabled={
+                                        productResult.results[0].data.stock <= 0
+                                    }
                                 />
                             </ActionButtonContainer>
                         </Container>

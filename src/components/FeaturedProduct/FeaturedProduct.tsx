@@ -62,6 +62,7 @@ const FeaturedProduct = (props: FeaturedProductProps) => {
                             })
                         );
                     }}
+                    disabled={product.data.stock <= 0}
                 />
             </AddToCartButtonContainer>
         </OveralContainer>
