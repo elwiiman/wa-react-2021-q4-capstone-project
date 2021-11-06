@@ -23,8 +23,13 @@ export const TotalContainer = styled.div`
     padding: 1em;
     margin: 0;
     margin-top: 1em;
-    max-height: 3.5em;
     min-width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: sticky;
+    top: 140px;
+    max-height: 140px;
 
     @media ${device.tablet} {
         margin: 0 1em;
@@ -36,5 +41,12 @@ export const CartElementsContainer = styled.div`
 
     @media ${device.tablet} {
         display: flex;
+    }
+`;
+
+export const ToCheckoutContainer = styled.div`
+    margin-top: 1em;
+    @media ${device.tablet} {
+        margin-top: 0;
     }
 `;
