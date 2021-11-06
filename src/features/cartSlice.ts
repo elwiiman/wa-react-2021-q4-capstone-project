@@ -40,3 +40,9 @@ export const selectTotalProductsInCart = (state: RootState) => {
         return product.quantity + accum;
     }, 0);
 };
+
+export const selectTotalAmount = (state: RootState) => {
+    return state.cart.products.reduce((accum, product) => {
+        return product.quantity * product.data.price + accum;
+    }, 0);
+};

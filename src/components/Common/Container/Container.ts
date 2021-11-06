@@ -9,6 +9,7 @@ interface IContainer {
     marginTop?: string;
     width?: string;
     flexDirection?: string;
+    maxWidth?: string;
 }
 
 export default styled.div<IContainer>`
@@ -28,6 +29,10 @@ export default styled.div<IContainer>`
         props.flexCenter
             ? 'display: flex; justify-content: center; align-items: center;'
             : ''}
+
+    ${(props) => (props.maxWidth ? `max-width:${props.maxWidth}` : '')}
+
+    
 
     ${(props) =>
         props.flexDirection ? `flex-direction:${props.flexDirection}` : ''}

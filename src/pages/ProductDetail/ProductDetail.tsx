@@ -34,7 +34,7 @@ const ProductDetail = () => {
     const products = useAppSelector((state) => state.cart.products);
     const dispatch = useAppDispatch();
 
-    console.log('products redux!', products);
+    console.log('products redux!', JSON.stringify(products));
 
     const {
         data: productResult,
