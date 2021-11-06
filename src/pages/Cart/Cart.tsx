@@ -12,6 +12,7 @@ import {
     CartWrapper,
     CartElementsContainer,
     ToCheckoutContainer,
+    CardContainer,
 } from './styled';
 
 const Cart = () => {
@@ -26,9 +27,9 @@ const Cart = () => {
             <CartElementsContainer>
                 <CartOverallContainer>
                     {products.map((product, index) => (
-                        <div key={index}>
+                        <CardContainer key={index}>
                             <ProductInCart product={product} />
-                        </div>
+                        </CardContainer>
                     ))}
                 </CartOverallContainer>
 

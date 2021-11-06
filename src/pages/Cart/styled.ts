@@ -30,9 +30,11 @@ export const TotalContainer = styled.div`
     position: sticky;
     top: 140px;
     max-height: 140px;
+    border-radius: 2px;
 
     @media ${device.tablet} {
         margin: 0 1em;
+        min-height: 176px;
     }
 `;
 
@@ -49,4 +51,8 @@ export const ToCheckoutContainer = styled.div`
     @media ${device.tablet} {
         margin-top: 0;
     }
+`;
+
+export const CardContainer = styled.div`
+    margin-bottom: 0.8em;
 `;

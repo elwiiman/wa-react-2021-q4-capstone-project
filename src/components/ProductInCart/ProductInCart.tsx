@@ -44,7 +44,7 @@ const ProductInCart = ({ product }: ProductInCartProps) => {
     const dispatch = useAppDispatch();
 
     return (
-        <Container>
+        <Container borderRadius="2px">
             <OverallContainer>
                 <ImageAndInfoWrapper>
                     <div>
