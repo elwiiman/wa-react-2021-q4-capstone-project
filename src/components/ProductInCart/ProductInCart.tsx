@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useAppDispatch } from '../../config/app/hooks';
+import { addToCart, deleteFromCart } from '../../features/cartSlice';
 import { CartProduct } from '../../types/cart';
 import Container from '../Common/Container';
 import SimpleButton from '../SimpleButton';
@@ -19,8 +21,6 @@ import {
 } from './styled';
 export interface ProductInCartProps {
     product: CartProduct;
-    addToCart: (product: CartProduct) => void;
-    removeFromCart: (product: CartProduct) => void;
 }
 
 const Label = () => {
@@ -32,11 +32,7 @@ const Label = () => {
     );
 };
 
-const ProductInCart = ({
-    product,
-    addToCart,
-    removeFromCart,
-}: ProductInCartProps) => {
+const ProductInCart = ({ product }: ProductInCartProps) => {
     const { data, quantity } = product;
     const [localQuantity, setLocalQuantity] = useState(quantity);
     const { name, price, images } = data;
@@ -45,9 +41,10 @@ const ProductInCart = ({
             image: { url, alt },
         },
     ] = images; //destructure first element url.
+    const dispatch = useAppDispatch();
 
     return (
-        <Container maxWidth="600px">
+        <Container>
             <OverallContainer>
                 <ImageAndInfoWrapper>
                     <div>
@@ -62,7 +59,7 @@ const ProductInCart = ({
 
                         <SimpleButton
                             label={<Label />}
-                            onClick={() => removeFromCart(product)}
+                            onClick={() => dispatch(deleteFromCart(product))}
                         />
                     </RightContainer>
                 </ImageAndInfoWrapper>
@@ -74,7 +71,9 @@ const ProductInCart = ({
                         onErrorHappen={() => {}}
                         onQuantityChange={(quantity) => {
                             setLocalQuantity(quantity);
-                            addToCart({ ...product, quantity: quantity });
+                            dispatch(
+                                addToCart({ ...product, quantity: quantity })
+                            );
                         }}
                     />
                     <SubTotalContainer>

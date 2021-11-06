@@ -1,17 +1,19 @@
 import { Meta, Story } from '@storybook/react';
 
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+
 import NoResults from './NoResults';
 
-const meta: Meta = {
+export default {
     title: 'Components/NoResults',
     component: NoResults,
-};
+} as ComponentMeta<typeof NoResults>;
 
-export default meta;
-
-const Template: Story = (args) => {
-    return <NoResults {...args} />;
-};
+const Template: ComponentStory<typeof NoResults> = (args) => (
+    <NoResults {...args} />
+);
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+    reason: 'noResultsInSearch',
+};

@@ -35,7 +35,7 @@ const Search = () => {
             parsed.q === '' ||
             parsed.q === undefined
         ) {
-            return <NoResults />;
+            return <NoResults reason="noResultsInSearch" />;
         }
         return (
             <Container colorType="paper" noPaddingBottom>

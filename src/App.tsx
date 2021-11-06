@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import ProductsList from './pages/ProductsList';
 import ProductDetail from './pages/ProductDetail';
 import Search from './pages/Search';
+import Cart from './pages/Cart';
 import ThemeProvider from './context/ThemeProvider';
 import MainLayout from './Layouts/MainLayout/MainLayout';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -25,6 +26,7 @@ function App() {
                         />
                         <Route path="/product/:id" component={ProductDetail} />
                         <Route path="/search" component={Search} />
+                        <Route exact path="/cart" component={Cart} />
                     </Switch>
                 </MainLayout>
             </ThemeProvider>

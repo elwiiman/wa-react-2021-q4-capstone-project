@@ -11,15 +11,26 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         addToCart: (state, action: PayloadAction<CartProduct>) => {
-            //in order to substite same product and don't duplicate.
-            const filtered = state.products.filter(
-                (product) => product.id !== action.payload.id
+            //find the  index where product is
+            const index = state.products.findIndex(
+                (product) => product.id === action.payload.id
             );
-            //setting new state
-            state.products = [...filtered, action.payload];
+
+            //if index is found...  (-1 is equal to not found in the cart):
+            if (index !== -1) {
+                //removing product
+                state.products.splice(index, 1);
+
+                //adding new product in same index we removed before
+                state.products.splice(index, 0, action.payload);
+
+                //add the product to the tail of the array
+            } else {
+                state.products = [...state.products, action.payload];
+            }
         },
         deleteFromCart: (state, action: PayloadAction<CartProduct>) => {
-            //in order to substite same product and don't duplicate.
+            //filter the array to delete product with the id dicted from de action payload
             const filtered = state.products.filter(
                 (product) => product.id !== action.payload.id
             );
@@ -43,6 +54,6 @@ export const selectTotalProductsInCart = (state: RootState) => {
 
 export const selectTotalAmount = (state: RootState) => {
     return state.cart.products.reduce((accum, product) => {
-        return product.quantity * product.data.price + accum;
+        return accum + product.quantity * product.data.price;
     }, 0);
 };

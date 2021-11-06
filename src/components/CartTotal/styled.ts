@@ -12,5 +12,5 @@ export const TotalLabel = styled.div`
 `;
 
 export const TotalQuantity = styled.div`
-    ${fontTypes.paragraphBold}
+    ${fontTypes.subtitle2Mobile}
 `;

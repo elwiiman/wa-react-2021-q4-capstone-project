@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAppSelector, useAppDispatch } from '../../config/app/hooks';
+import { useAppDispatch } from '../../config/app/hooks';
 import { addToCart } from '../../features/cartSlice';
 import ProductGallery from '../../components/ProductGallery';
 import ActionButton from '../../components/ActionButton';
@@ -31,10 +31,7 @@ interface ProductDetailParams {
 const ProductDetail = () => {
     const [quantity, setQuantity] = useState(1);
     const { id } = useParams<ProductDetailParams>();
-    const products = useAppSelector((state) => state.cart.products);
     const dispatch = useAppDispatch();
-
-    console.log('products redux!', JSON.stringify(products));
 
     const {
         data: productResult,
