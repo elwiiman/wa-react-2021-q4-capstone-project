@@ -1,4 +1,5 @@
 import { GlobalStyles } from './config/global.styles';
+import RouteWrapper from './Layouts/RouteWrapper';
 import Home from './pages/Home';
 import ProductsList from './pages/ProductsList';
 import ProductDetail from './pages/ProductDetail';
@@ -6,7 +7,7 @@ import Search from './pages/Search';
 import Cart from './pages/Cart';
 import ThemeProvider from './context/ThemeProvider';
 import MainLayout from './Layouts/MainLayout/MainLayout';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import ScrollToTop from './utils/ScrollToTop/';
 
 function App() {
@@ -14,21 +15,44 @@ function App() {
         <Router>
             <ThemeProvider>
                 <GlobalStyles />
-                <MainLayout>
-                    <ScrollToTop />
-                    <Switch>
-                        <Route exact path="/" component={Home} />
-                        <Route exact path="/home" component={Home} />
-                        <Route
-                            exact
-                            path="/products"
-                            component={ProductsList}
-                        />
-                        <Route path="/product/:id" component={ProductDetail} />
-                        <Route path="/search" component={Search} />
-                        <Route exact path="/cart" component={Cart} />
-                    </Switch>
-                </MainLayout>
+
+                <ScrollToTop />
+                <Switch>
+                    <RouteWrapper
+                        exact={true}
+                        path="/"
+                        component={Home}
+                        layout={MainLayout}
+                    />
+                    <RouteWrapper
+                        exact
+                        path="/home"
+                        component={Home}
+                        layout={MainLayout}
+                    />
+                    <RouteWrapper
+                        exact
+                        path="/products"
+                        component={ProductsList}
+                        layout={MainLayout}
+                    />
+                    <RouteWrapper
+                        path="/product/:id"
+                        component={ProductDetail}
+                        layout={MainLayout}
+                    />
+                    <RouteWrapper
+                        path="/search"
+                        component={Search}
+                        layout={MainLayout}
+                    />
+                    <RouteWrapper
+                        exact
+                        path="/cart"
+                        component={Cart}
+                        layout={MainLayout}
+                    />
+                </Switch>
             </ThemeProvider>
         </Router>
     );
