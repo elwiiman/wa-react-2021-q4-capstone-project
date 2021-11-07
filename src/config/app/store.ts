@@ -18,6 +18,7 @@ import storage from 'redux-persist/lib/storage';
 import type { PreloadedState } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import cartSlice from '../../features/cartSlice';
+import themeSlice from '../../features/themeSlice';
 import { furnitureApi } from '../../services/api/apiSlice';
 
 const persistConfig = {
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
     // Add the generated reducer as a specific top-level slice
     [furnitureApi.reducerPath]: furnitureApi.reducer,
     cart: cartSlice,
+    theme: themeSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
