@@ -5,8 +5,10 @@ import ProductsList from './pages/ProductsList';
 import ProductDetail from './pages/ProductDetail';
 import Search from './pages/Search';
 import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
 import ThemeProvider from './context/ThemeProvider';
 import MainLayout from './Layouts/MainLayout/MainLayout';
+import CheckoutLayout from './Layouts/CheckoutLayout';
 import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import ScrollToTop from './utils/ScrollToTop/';
 
@@ -51,6 +53,13 @@ function App() {
                         path="/cart"
                         component={Cart}
                         layout={MainLayout}
+                    />
+
+                    <RouteWrapper
+                        exact
+                        path="/checkout"
+                        component={Checkout}
+                        layout={CheckoutLayout}
                     />
                 </Switch>
             </ThemeProvider>
