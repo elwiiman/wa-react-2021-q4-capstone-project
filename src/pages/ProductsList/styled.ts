@@ -37,3 +37,9 @@ export const GridContainer = styled.div`
         padding: 1rem;
     }
 `;
+
+export const PaginatorContainer = styled.div`
+    width: fit-content;
+    padding: 2em;
+    margin: 0 auto;
+`;

@@ -2,15 +2,18 @@ export const lightTheme = {
     primary: {
         main: '#E4E5EE',
         contrastText: '#324462',
+        contrastBorder: '#324462',
     },
     secondary: {
         main: '#307AD3',
         contrastText: '#FFF',
+        contrastBorder: '#307AD3',
     },
 
     tertiary: {
         main: '#fff',
         contrastText: '#024fd4',
+        contrastBorder: '#024fd4',
     },
     error: {
         main: '#000',
@@ -19,8 +22,8 @@ export const lightTheme = {
     text: {
         primary: '#324462',
         secondary: '#FFF',
-        disabled: '#000',
-        hint: '#000',
+        disabled: '#DCDCE7',
+        hint: '#636780',
     },
     line: {
         primary: '#EBF0F7',
@@ -37,20 +40,32 @@ export const lightTheme = {
         tertiary: '#7aaffa',
         contrast: '#fafafa',
     },
+    spinner: {
+        main: '#307AD3',
+        back: '#D3DCE8',
+    },
+
+    input: {
+        background: '#FFF',
+        text: '#324462',
+    },
 };
 
 export const darkTheme = {
     primary: {
         main: '#000',
         contrastText: '#FFF',
+        contrastBorder: '#FFF',
     },
     secondary: {
-        main: '#000',
-        contrastText: '#FFF',
+        main: '#FFF',
+        contrastText: '#414146',
+        contrastBorder: '#414146',
     },
     tertiary: {
         main: '',
         contrastText: '',
+        contrastBorder: '',
     },
     error: {
         main: '#000',
@@ -59,8 +74,8 @@ export const darkTheme = {
     text: {
         primary: '#fff',
         secondary: '#fff',
-        disabled: '#000',
-        hint: '#000',
+        disabled: '#6C6E7B',
+        hint: '#c6c6c9',
     },
     line: {
         primary: '#324462',
@@ -76,5 +91,14 @@ export const darkTheme = {
         secondary_opac: 'rgba(53, 59, 78, 0.5)',
         tertiary: '#6b6b6f',
         contrast: '#fafafa',
+    },
+    spinner: {
+        main: '#000c0c',
+        back: '#F2F6F6',
+    },
+
+    input: {
+        background: '#FFF',
+        text: '#414146',
     },
 };

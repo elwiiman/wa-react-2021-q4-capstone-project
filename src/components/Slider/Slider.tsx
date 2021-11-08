@@ -1,22 +1,7 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { ResultsEntity } from '../../types/featuredBanners';
 import { StyledImage, SliderContainer, Description } from './styled';
-
-// swiper bundle styles
-import 'swiper/swiper-bundle.min.css';
-
-// swiper core styles
-import 'swiper/swiper.min.css';
-
-// modules styles
-import 'swiper/components/navigation/navigation.min.css';
-import 'swiper/components/pagination/pagination.min.css';
-
-// import Swiper core and required modules
-import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper';
-
-// install Swiper modules
-SwiperCore.use([Autoplay, Pagination, Navigation]);
+import { takefirstCharacters } from '../../helpers/stringHelpers';
 
 interface SliderProps {
     /**
@@ -43,18 +28,25 @@ const Slider = ({ slides }: SliderProps) => {
                     clickable: true,
                 }}
             >
-                {slides.map((slide) => (
-                    <SwiperSlide key={slide.id}>
-                        <StyledImage
-                            src={slide.data.main_image.url}
-                            alt={slide.data.main_image.alt}
-                        />
+                {slides.map((slide) => {
+                    //trim the description text if is > 40 characters length
+                    let textDescription = slide.data.description[0].text;
+                    textDescription =
+                        textDescription.length > 40
+                            ? `${takefirstCharacters(textDescription, 40)}...`
+                            : textDescription;
 
-                        <Description>
-                            {slide.data.description[0].text}
-                        </Description>
-                    </SwiperSlide>
-                ))}
+                    return (
+                        <SwiperSlide key={slide.id}>
+                            <StyledImage
+                                src={slide.data.main_image.url}
+                                alt={slide.data.main_image.alt}
+                            />
+
+                            <Description>{textDescription}</Description>
+                        </SwiperSlide>
+                    );
+                })}
             </Swiper>
         </SliderContainer>
     );

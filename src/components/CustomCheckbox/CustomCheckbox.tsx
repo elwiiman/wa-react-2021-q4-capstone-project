@@ -8,6 +8,7 @@ interface CustomCheckboxProps {
     disabled?: boolean;
     fontType?: 'paragraph' | 'caption';
     value: any;
+    checked?: boolean;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -18,6 +19,7 @@ const CustomCheckbox = ({
     disabled = false,
     fontType = 'paragraph',
     value,
+    checked = false,
     onChange,
 }: CustomCheckboxProps) => {
     return (
@@ -30,6 +32,7 @@ const CustomCheckbox = ({
                 disabled={disabled}
                 value={value}
                 onChange={onChange}
+                checked={checked}
             />
             <Checkmark />
         </LabelContainer>

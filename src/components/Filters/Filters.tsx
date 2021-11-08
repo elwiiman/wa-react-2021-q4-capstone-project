@@ -1,24 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { CheckboxContainer, FiltersTitle } from './styled';
 import { ResultsEntity } from '../../types/productCategories';
-import { ResultsEntity as ResultsEntityProducts } from '../../types/featuredProducts';
-import { filterProductsByCategory } from '../../helpers/filtersHelpers';
 import CustomCheckbox from '../CustomCheckbox';
+import queryString from 'query-string';
+import { useLocation } from 'react-router';
+import { useHistory } from 'react-router-dom';
+import ActionButton from '../ActionButton';
+import { parseCategoriesParams } from '../../helpers/queryParamsHelpers';
 
 interface FilterBarProps {
     categories: ResultsEntity[];
-    baseProducts: ResultsEntityProducts[];
-    setParentProducts: React.Dispatch<
-        React.SetStateAction<ResultsEntityProducts[]>
-    >;
 }
 
-const Filters = ({
-    categories,
-    baseProducts,
-    setParentProducts,
-}: FilterBarProps) => {
+const Filters = ({ categories }: FilterBarProps) => {
     const [selectedFilters, setSelectedFilters] = useState<string[]>([]);
+    const history = useHistory();
+    const { pathname, search } = useLocation();
 
     const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { checked } = e.target;
@@ -37,11 +34,22 @@ const Filters = ({
     };
 
     useEffect(() => {
-        setParentProducts(
-            filterProductsByCategory(selectedFilters, baseProducts)
+        const query = queryString.stringify(
+            { category: selectedFilters },
+            { arrayFormat: 'separator', arrayFormatSeparator: '|' }
         );
+        history.push(`${pathname}?${query}`);
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [selectedFilters]);
+
+    useEffect(() => {
+        if (search) {
+            const parsedCategories = parseCategoriesParams(search);
+            setSelectedFilters(parsedCategories);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <section>
@@ -52,11 +60,19 @@ const Filters = ({
                         label={category.data.name}
                         name={'filters'}
                         id={category.data.name}
+                        checked={selectedFilters.includes(category.slugs[0])}
                         value={category.slugs[0]}
                         onChange={onChange}
                     />
                 </CheckboxContainer>
             ))}
+            {selectedFilters.length > 0 && (
+                <ActionButton
+                    label="Clean Filters"
+                    onClick={() => setSelectedFilters([])}
+                    color="secondary"
+                />
+            )}
         </section>
     );
 };

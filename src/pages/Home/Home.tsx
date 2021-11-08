@@ -5,25 +5,54 @@ import CategoriesGrid from '../../components/CategoriesGrid';
 import FeaturedProductsGrid from '../../components/FeaturedProductsGrid';
 import Title from '../../components/Title';
 import Container from '../../components/Common/Container';
-import { featuredBanners } from '../../mocks/featuredBanners';
-import { productCategories } from '../../mocks/productCategories';
-import { featuredProducts } from '../../mocks/featuredProducts';
 import { ViewAllButtonContainer } from './styled';
+import {
+    useGetFeaturedBannersQuery,
+    useGetProductsCategoriesQuery,
+    useGetFeaturedProductsQuery,
+} from '../../services/api/apiSlice';
+import Spinner from '../../components/Spinner';
 
 const Home = () => {
+    const {
+        data: featuredBanners,
+        isLoading: featuredBannersIsLoading,
+    } = useGetFeaturedBannersQuery();
+
+    const {
+        data: productCategories,
+        isLoading: productCategoriesIsLoading,
+    } = useGetProductsCategoriesQuery();
+
+    const {
+        data: featuredProducts,
+        isLoading: featuredProductsIsLoading,
+    } = useGetFeaturedProductsQuery();
+
     return (
         <>
-            {/* TODO: subsititue by results from the API */}
-            <Slider slides={featuredBanners.results} />
+            {featuredBanners && <Slider slides={featuredBanners.results} />}
+
+            {featuredBannersIsLoading && (
+                <Container flexCenter style={{ height: '400px' }}>
+                    <Spinner widthAndHeight={'60px'} />
+                </Container>
+            )}
 
             <Container colorType="paper">
                 <Title text="Product Categories" />
-                <CategoriesGrid categories={productCategories.results} />
+                {productCategoriesIsLoading && <Spinner />}
+                {productCategories && (
+                    <CategoriesGrid categories={productCategories.results} />
+                )}
             </Container>
 
             <Container colorType="paper">
                 <Title text="Exclusive products for you" center={true} />
-                <FeaturedProductsGrid products={featuredProducts.results} />
+                {featuredProducts && (
+                    <FeaturedProductsGrid products={featuredProducts.results} />
+                )}
+                {featuredProductsIsLoading && <Spinner />}
             </Container>
 
             <Container colorType="paper">

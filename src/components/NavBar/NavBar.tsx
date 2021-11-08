@@ -67,6 +67,7 @@ const NavBar: FunctionComponent<NavBarProps> = ({ doSearch }) => {
             <StyledForm onSubmit={submitSearch}>
                 <Input {...search} />
                 <SimpleButton
+                    style={{ width: '45px' }}
                     label={<SearchIcon />}
                     onClick={submitSearch}
                     enablePaperBackground

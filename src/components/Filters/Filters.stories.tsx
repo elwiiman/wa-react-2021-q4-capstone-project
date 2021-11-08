@@ -11,17 +11,10 @@ export default {
 } as ComponentMeta<typeof Filters>;
 
 const Template: ComponentStory<typeof Filters> = (args) => {
-    const [filteredProducts, setFilteredProducts] = useState(
-        featuredProducts.results
-    );
-
-    console.log('filteredProducts', filteredProducts);
-
-    return <Filters {...args} setParentProducts={setFilteredProducts} />;
+    return <Filters {...args} />;
 };
 
 export const Default = Template.bind({});
 Default.args = {
     categories: productCategories.results,
-    baseProducts: featuredProducts.results,
 };
