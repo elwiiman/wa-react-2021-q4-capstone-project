@@ -12,7 +12,7 @@ export const RightSideContainer = styled.div``;
 export const StyledSecureNav = styled.nav`
     background-color: ${(props) => props.theme.background.main};
     color: ${(props) => props.theme.text.primary};
-    height: 80px;
+    height: 60px;
     padding: 1em;
     display: flex;
     justify-content: space-between;

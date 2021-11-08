@@ -10,7 +10,6 @@ import {
 } from './styled';
 import { useAppSelector, useAppDispatch } from '../../config/app/hooks';
 import { toggleTheme } from '../../features/themeSlice';
-interface CheckoutHeaderProps {}
 
 const CheckoutHeader = () => {
     const isDarkTheme = useAppSelector((state) => state.theme.dark);

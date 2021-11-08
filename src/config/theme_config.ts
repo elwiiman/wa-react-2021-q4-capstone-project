@@ -1,4 +1,5 @@
 export const lightTheme = {
+    title: 'lightTheme',
     primary: {
         main: '#E4E5EE',
         contrastText: '#324462',
@@ -16,8 +17,11 @@ export const lightTheme = {
         contrastBorder: '#024fd4',
     },
     error: {
-        main: '#000',
+        main: '#EB6469',
         contrastText: '#FFF',
+    },
+    warn: {
+        main: '#D48714',
     },
     text: {
         primary: '#324462',
@@ -28,9 +32,10 @@ export const lightTheme = {
     line: {
         primary: '#EBF0F7',
         secondary: '#3077CF',
+        tertiary: '#c3d0e0',
         disabled: '#000',
         focus: '#D3DCE8 ',
-        error: 'red',
+        error: '#eda0a3',
     },
     background: {
         paper: '#FFF',
@@ -52,6 +57,7 @@ export const lightTheme = {
 };
 
 export const darkTheme = {
+    title: 'darkTheme',
     primary: {
         main: '#000',
         contrastText: '#FFF',
@@ -68,8 +74,11 @@ export const darkTheme = {
         contrastBorder: '',
     },
     error: {
-        main: '#000',
+        main: '#CA8888',
         contrastText: '#FFF',
+    },
+    warn: {
+        main: '#E2B768',
     },
     text: {
         primary: '#fff',
@@ -80,9 +89,10 @@ export const darkTheme = {
     line: {
         primary: '#324462',
         secondary: '#000',
+        tertiary: '#6a6f75',
         disabled: '#000',
         focus: '#F5F8FC',
-        error: 'red',
+        error: '#cf7474',
     },
     background: {
         paper: '#414146',

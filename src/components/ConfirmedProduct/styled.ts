@@ -6,10 +6,6 @@ export const ConfirmedProductContainer = styled.div`
     display: flex;
     padding: 1em;
     background-color: ${(props) => props.theme.background.main};
-
-    @media ${device.tablet} {
-        max-width: 60%;
-    }
 `;
 
 export const ProductImageContainer = styled.div`
@@ -60,7 +56,7 @@ export const PriceInfoContainer = styled.div`
     border-radius: 5px;
     margin-top: 1em;
     height: max-content;
-    min-width: 160px;
+    min-width: 150px;
     @media ${device.tablet} {
         margin-top: 0;
     }

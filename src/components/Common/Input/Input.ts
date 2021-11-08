@@ -15,7 +15,8 @@ export interface Iinput {
 export default styled.input<Iinput>`
     border-radius: ${(props) => (props.radius ? props.radius : '5px')};
     color: ${(props) => props.theme.input.text};
-    border: 1px solid
+    border: ${(props) => (props.theme.title === 'darkTheme' ? '2.8px' : '1px')}
+        solid
         ${(props) =>
             props.error ? props.theme.line.error : props.theme.line.primary};
     &:focus {
