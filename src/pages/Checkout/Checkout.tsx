@@ -4,6 +4,7 @@ import ActionButton from '../../components/ActionButton';
 import initialValues from '../../components/ConctactForm/initialValues';
 import validationSchema from '../../components/ConctactForm/validationSchema';
 import { useAppSelector } from '../../config/app/hooks';
+import { selectTotalAmount } from '../../features/cartSlice';
 import { Formik } from 'formik';
 import { Link } from 'react-router-dom';
 
@@ -20,6 +21,7 @@ import {
 
 const Checkout = () => {
     const cartProducts = useAppSelector((state) => state.cart.products);
+    const grandTotal = useAppSelector(selectTotalAmount);
 
     return (
         <Formik
@@ -51,7 +53,9 @@ const Checkout = () => {
                             <ButtonsContainer>
                                 <ActionButton
                                     color="secondary"
-                                    label="Place Order"
+                                    label={`Place Order | $ ${Number(
+                                        grandTotal
+                                    ).toFixed(2)}`}
                                     onClick={() => {
                                         handleSubmit();
                                     }}
