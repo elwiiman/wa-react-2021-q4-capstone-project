@@ -9,6 +9,8 @@ interface IContainer {
     marginTop?: string;
     width?: string;
     flexDirection?: string;
+    maxWidth?: string;
+    borderRadius?: string;
 }
 
 export default styled.div<IContainer>`
@@ -28,6 +30,11 @@ export default styled.div<IContainer>`
         props.flexCenter
             ? 'display: flex; justify-content: center; align-items: center;'
             : ''}
+
+    ${(props) => (props.maxWidth ? `max-width:${props.maxWidth}` : '')}
+    ${(props) =>
+        props.borderRadius ? `border-radius:${props.borderRadius}` : ''}
+  
 
     ${(props) =>
         props.flexDirection ? `flex-direction:${props.flexDirection}` : ''}

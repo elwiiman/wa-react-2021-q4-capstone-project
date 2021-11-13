@@ -12,17 +12,17 @@ export interface FeaturedProducts {
 }
 export interface ResultsEntity {
     id: string;
-    uid: null;
-    url: null;
+    uid?: null;
+    url?: null;
     type: string;
     href: string;
-    tags: string[] | null;
+    tags?: string[] | null;
     first_publication_date: string;
     last_publication_date: string;
-    slugs: string[] | null;
-    linked_documents: null[] | null;
+    slugs?: string[] | null;
+    linked_documents?: null[] | null;
     lang: string;
-    alternate_languages: AlternateLanguagesEntity[] | null;
+    alternate_languages?: AlternateLanguagesEntity[] | null;
     data: Data;
 }
 export interface AlternateLanguagesEntity {
@@ -38,7 +38,7 @@ export interface Data {
     short_description: string;
     description?: DescriptionEntity[] | null;
     specs?: SpecsEntity[] | null;
-    images?: ImagesEntity[] | null;
+    images: ImagesEntity[];
     stock: number;
     price: number;
 }
@@ -77,7 +77,7 @@ export interface ImagesEntity {
 }
 export interface Image {
     dimensions: Dimensions;
-    alt?: null;
-    copyright?: null;
+    alt: string | null;
+    copyright: string | null;
     url: string;
 }

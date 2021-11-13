@@ -5,6 +5,8 @@ import App from './App';
 import { store } from './config/app/store';
 import { Provider } from 'react-redux';
 import reportWebVitals from './reportWebVitals';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor } from './config/app/store';
 
 // swiper bundle styles
 import 'swiper/swiper-bundle.min.css';
@@ -25,7 +27,9 @@ SwiperCore.use([Autoplay, Pagination, Navigation]);
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
-            <App />
+            <PersistGate loading={null} persistor={persistor}>
+                <App />
+            </PersistGate>
         </Provider>
     </React.StrictMode>,
     document.getElementById('root')

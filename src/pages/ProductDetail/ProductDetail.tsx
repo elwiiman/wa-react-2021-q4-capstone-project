@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useAppDispatch } from '../../config/app/hooks';
+import { addToCart } from '../../features/cartSlice';
 import ProductGallery from '../../components/ProductGallery';
 import ActionButton from '../../components/ActionButton';
 import QuantityButton from '../../components/QuantityButton';
@@ -29,6 +31,7 @@ interface ProductDetailParams {
 const ProductDetail = () => {
     const [quantity, setQuantity] = useState(1);
     const { id } = useParams<ProductDetailParams>();
+    const dispatch = useAppDispatch();
 
     const {
         data: productResult,
@@ -74,9 +77,16 @@ const ProductDetail = () => {
                                 <ActionButton
                                     color="secondary"
                                     label="Add to Cart"
-                                    onClick={
-                                        // TODO: make add to car functionality
-                                        () => {}
+                                    onClick={() => {
+                                        dispatch(
+                                            addToCart({
+                                                ...productResult.results[0],
+                                                quantity,
+                                            })
+                                        );
+                                    }}
+                                    disabled={
+                                        productResult.results[0].data.stock <= 0
                                     }
                                 />
                             </ActionButtonContainer>

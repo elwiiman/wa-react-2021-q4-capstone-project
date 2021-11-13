@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StyledDivButtonContainer, StyledButton, StyledInput } from './styled';
 import PlusSymbol from '../Icons/PlusSymbol';
 import MinusSymbol from '../Icons/MinusSymbol';
+import { debounce, throttle } from '../../utils/Performance/forFunctions';
 
 interface statusWindowMessage {
     type: string;
@@ -38,7 +39,6 @@ const QuantityButton = (props: QuantityButtonProps) => {
         onErrorHappen,
     } = props;
 
-    let timeDemo: number;
     const minQuantity = 1;
 
     //STATE
@@ -117,16 +117,8 @@ const QuantityButton = (props: QuantityButtonProps) => {
             default:
         }
 
-        //Update selectedQuantity state
         setSelectedQuantity(newQuantity);
-
-        //Set timer to change update quantity in parent component, so
-        //we can get only the last value
-        clearInterval(timeDemo);
-        timeDemo = window.setTimeout(() => {
-            // calling fuction in charge to update cart via API call
-            onQuantityChange(newQuantity);
-        }, 300);
+        onQuantityChange(newQuantity);
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -143,13 +135,7 @@ const QuantityButton = (props: QuantityButtonProps) => {
         setSelectedQuantity(quantity);
 
         if (quantity <= maximumQuantity && quantity >= minQuantity) {
-            //Set timer to change update quantity in parent component, so
-            //we can get only the last value
-            clearInterval(timeDemo);
-            timeDemo = window.setTimeout(() => {
-                // calling fuction in charge to update cart via API call
-                onQuantityChange(quantity);
-            }, 300);
+            onQuantityChange(quantity);
         }
     };
 
@@ -172,12 +158,7 @@ const QuantityButton = (props: QuantityButtonProps) => {
 
             //updating state
             setSelectedQuantity(minQuantity);
-
-            clearInterval(timeDemo);
-            timeDemo = window.setTimeout(() => {
-                // calling fuction in charge to update cart via API call
-                onQuantityChange(minQuantity);
-            }, 300);
+            onQuantityChange(minQuantity);
 
             //Send error message
             if (onErrorHappen) {
@@ -191,22 +172,30 @@ const QuantityButton = (props: QuantityButtonProps) => {
 
     return (
         <StyledDivButtonContainer>
-            <StyledButton data-name="minus" id="minus" onClick={handleClick}>
+            <StyledButton
+                data-name="minus"
+                id="minus"
+                onClick={debounce(handleClick)}
+            >
                 <MinusSymbol
-                    onClick={handleClick}
+                    onClick={debounce(handleClick)}
                     inStock={selectedQuantity > minQuantity}
                 />
             </StyledButton>
             <StyledInput
                 name="selectedQuantity"
                 value={selectedQuantity}
-                onChange={handleChange}
+                onChange={throttle(handleChange, 200)}
                 placeholder="1"
-                onBlur={handleOnBlur}
+                onBlur={debounce(handleOnBlur)}
             />
-            <StyledButton data-name="plus" id="plus" onClick={handleClick}>
+            <StyledButton
+                data-name="plus"
+                id="plus"
+                onClick={debounce(handleClick)}
+            >
                 <PlusSymbol
-                    onClick={handleClick}
+                    onClick={debounce(handleClick)}
                     inStock={isLessThanMaximumQuantity}
                 />
             </StyledButton>

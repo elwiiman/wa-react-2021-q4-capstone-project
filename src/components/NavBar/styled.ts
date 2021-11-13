@@ -61,11 +61,13 @@ export const CartContainer = styled.div`
 
     @media ${device.laptop} {
         display: flex;
+        align-items: center;
     }
 `;
 
 export const CartContainerMobile = styled.div`
     display: flex;
+    align-items: center;
     & button {
         margin-right: 0.5em;
     }

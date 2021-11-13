@@ -2,15 +2,31 @@ import Container from '../Common/Container';
 import Title from '../Title';
 import { Message, NoResultsContainer } from './styled';
 
-const NoResults = () => {
+const reasons = {
+    noResultsInSearch: {
+        title: 'Sorry :(',
+        message: "We couln't found results for your search",
+    },
+
+    noProductsInCart: {
+        title: 'Ups!',
+        message: 'There is nothing in your cart yet. Please add some products',
+    },
+};
+
+export interface NoResultsProps {
+    reason: 'noResultsInSearch' | 'noProductsInCart';
+}
+
+const NoResults = ({ reason }: NoResultsProps) => {
     return (
         <Container colorType="paper" noPaddingBottom noPaddingTop>
             <NoResultsContainer>
                 <div>
-                    <Title text="Sorry :(" />
+                    <Title text={reasons[reason].title} />
                 </div>
 
-                <Message>We couln't found results for your search</Message>
+                <Message>{reasons[reason].message}</Message>
             </NoResultsContainer>
         </Container>
     );

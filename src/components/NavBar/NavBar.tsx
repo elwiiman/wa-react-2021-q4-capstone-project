@@ -1,8 +1,11 @@
-import { FunctionComponent, useContext } from 'react';
+import { FunctionComponent } from 'react';
 import { Link } from 'react-router-dom';
+import { useAppSelector, useAppDispatch } from '../../config/app/hooks';
+import { toggleTheme } from '../../features/themeSlice';
+import { selectTotalProductsInCart } from '../../features/cartSlice';
+import CartStatus from '../CartStatus';
 import Logo from '../Logo';
 import Input from '../Common/Input';
-import CartIcon from '../Icons/Cart';
 import SearchIcon from '../Icons/Search';
 import Sun from '../Icons/Sun';
 import Moon from '../Icons/Moon';
@@ -17,16 +20,15 @@ import {
     CartContainer,
     CartContainerMobile,
 } from './styled';
-
-import { ThemeContext } from '../../context/ThemeProvider';
-
 interface NavBarProps {
     doSearch: Function;
 }
 
 const NavBar: FunctionComponent<NavBarProps> = ({ doSearch }) => {
     const search = useInput('');
-    const { isDarkTheme, toggleTheme } = useContext(ThemeContext);
+    const dispatch = useAppDispatch();
+    const isDarkTheme = useAppSelector((state) => state.theme.dark);
+    const numberOfProducts = useAppSelector(selectTotalProductsInCart);
 
     const submitSearch = (e: React.SyntheticEvent) => {
         e.preventDefault();
@@ -48,19 +50,21 @@ const NavBar: FunctionComponent<NavBarProps> = ({ doSearch }) => {
                         <SimpleButton
                             label={<Sun />}
                             onClick={() => {
-                                toggleTheme();
+                                dispatch(toggleTheme());
                             }}
                         />
                     ) : (
                         <SimpleButton
                             label={<Moon />}
                             onClick={() => {
-                                toggleTheme();
+                                dispatch(toggleTheme());
                             }}
                         />
                     )}
 
-                    <SimpleButton label={<CartIcon />} onClick={() => {}} />
+                    <div>
+                        <CartStatus totalCount={numberOfProducts} />
+                    </div>
                 </CartContainerMobile>
             </MainContainer>
 
@@ -79,18 +83,20 @@ const NavBar: FunctionComponent<NavBarProps> = ({ doSearch }) => {
                     <SimpleButton
                         label={<Sun />}
                         onClick={() => {
-                            toggleTheme();
+                            dispatch(toggleTheme());
                         }}
                     />
                 ) : (
                     <SimpleButton
                         label={<Moon />}
                         onClick={() => {
-                            toggleTheme();
+                            dispatch(toggleTheme());
                         }}
                     />
                 )}
-                <SimpleButton label={<CartIcon />} onClick={() => {}} />
+                <div>
+                    <CartStatus totalCount={numberOfProducts} />
+                </div>
             </CartContainer>
         </StyledNav>
     );

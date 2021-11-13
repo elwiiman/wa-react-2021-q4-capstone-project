@@ -1,9 +1,11 @@
 // import original module declarations
 import 'styled-components';
+import { StringMappingType } from 'typescript';
 
 // and extend them!
 declare module 'styled-components' {
     export interface DefaultTheme {
+        title: string;
         primary: {
             main: string;
             contrastText: string;
@@ -19,6 +21,9 @@ declare module 'styled-components' {
             contrastText: string;
             contrastBorder: string;
         };
+        warn: {
+            main: string;
+        };
         error: {
             main: string;
             contrastText: string;
@@ -32,6 +37,7 @@ declare module 'styled-components' {
         line: {
             primary: string;
             secondary: string;
+            tertiary: string;
             disabled: string;
             error: string;
             focus: string;
