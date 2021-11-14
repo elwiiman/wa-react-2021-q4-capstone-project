@@ -16,14 +16,15 @@ import ActionButton from '../ActionButton';
 
 export interface FeaturedProductProps {
     product: ResultsEntity;
+    index: number;
 }
 
 const FeaturedProduct = (props: FeaturedProductProps) => {
-    const { product } = props;
+    const { product, index } = props;
     const { data, id } = product;
     const dispatch = useAppDispatch();
     const {
-        category: { slug },
+        category: { slug = '' },
         mainimage: { url, alt },
         price,
     } = data;
