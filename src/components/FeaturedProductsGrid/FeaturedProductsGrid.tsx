@@ -13,8 +13,11 @@ const FeaturedProducts = ({ products }: FeaturedProductsProps) => {
             <OverallGridContainer>
                 <GridContainer>
                     {products.map((product, index) => (
-                        <GridItem key={index}>
-                            <FeaturedProduct product={product} />
+                        <GridItem
+                            key={index}
+                            data-testid={`featured-product-${index}`}
+                        >
+                            <FeaturedProduct product={product} index={index} />
                         </GridItem>
                     ))}
                 </GridContainer>

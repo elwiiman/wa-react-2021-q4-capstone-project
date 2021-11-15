@@ -171,7 +171,7 @@ const QuantityButton = (props: QuantityButtonProps) => {
     };
 
     return (
-        <StyledDivButtonContainer>
+        <StyledDivButtonContainer data-testid="quantity-btn">
             <StyledButton
                 data-name="minus"
                 id="minus"

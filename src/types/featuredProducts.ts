@@ -4,8 +4,8 @@ export interface FeaturedProducts {
     results_size: number;
     total_results_size: number;
     total_pages: number;
-    next_page?: null;
-    prev_page?: null;
+    next_page?: string | null;
+    prev_page?: string | null;
     results: ResultsEntity[];
     version: string;
     license: string;

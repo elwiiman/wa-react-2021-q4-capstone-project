@@ -46,7 +46,11 @@ const ProductDetail = () => {
         );
     if (productResult)
         return (
-            <Container noPaddingTop noPaddingBottom>
+            <Container
+                noPaddingTop
+                noPaddingBottom
+                data-testid="detail-product-fullContainer"
+            >
                 <OverallContainer>
                     <HalfWithLimitContainer>
                         <ProductGallery product={productResult.results[0]} />

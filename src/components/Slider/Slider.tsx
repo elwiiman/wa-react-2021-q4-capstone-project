@@ -28,7 +28,7 @@ const Slider = ({ slides }: SliderProps) => {
                     clickable: true,
                 }}
             >
-                {slides.map((slide) => {
+                {slides.map((slide, index) => {
                     //trim the description text if is > 40 characters length
                     let textDescription = slide.data.description[0].text;
                     textDescription =
@@ -41,6 +41,7 @@ const Slider = ({ slides }: SliderProps) => {
                             <StyledImage
                                 src={slide.data.main_image.url}
                                 alt={slide.data.main_image.alt}
+                                data-testid={`featured-banner-img-${index}`}
                             />
 
                             <Description>{textDescription}</Description>
