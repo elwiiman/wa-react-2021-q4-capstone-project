@@ -1,6 +1,10 @@
 import { screen } from '@testing-library/react';
 import ProductDetail from './';
 import { renderWithProviders } from '../../test/test-utils';
+import { productById } from '../../mocks/productById';
+import { server } from '../../test/server';
+import { rest } from 'msw';
+import { baseUrl } from '../../config/app/constants';
 
 describe('Fetch and render from the API', () => {
     it('Product Data is fetched correctly', async () => {
@@ -49,5 +53,36 @@ describe('Add to cart button and Quantity button are rendered', () => {
 
         const qtyButton = await screen.findByTestId('quantity-btn');
         expect(qtyButton).toBeInTheDocument();
+    });
+});
+
+describe('Add product to cart', () => {
+    it('A product is added to cart when user clicks on Add to product', async () => {
+        const { store } = renderWithProviders(<ProductDetail />);
+        let currentStore = store.getState();
+        expect(currentStore.cart.products.length).toEqual(0);
+        const button = await screen.findByTestId('addToCart-btn');
+
+        button.click();
+        currentStore = store.getState();
+        expect(currentStore.cart.products.length).toEqual(1);
+    });
+
+    it('Button is disabled when stock is equal 0', async () => {
+        //intercept common response managed in handler, in order to mutate stock to 0.
+        server.use(
+            rest.get(`${baseUrl}/documents/search`, (req, res, ctx) => {
+                const query = req.url.searchParams;
+                const allQ = query.getAll('q');
+
+                if (allQ.includes(`[[:d = at(document.id, "undefined") ]]`)) {
+                    productById.results[0].data.stock = 0;
+                    return res(ctx.status(200), ctx.json(productById));
+                }
+            })
+        );
+        renderWithProviders(<ProductDetail />);
+        const button = await screen.findByTestId('addToCart-btn');
+        expect(button).toHaveAttribute('disabled');
     });
 });

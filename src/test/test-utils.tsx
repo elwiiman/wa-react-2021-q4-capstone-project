@@ -34,7 +34,10 @@ function renderWithProviders(
             </MemoryRouter>
         );
     }
-    return render(ui, { wrapper: Wrapper, ...renderOptions });
+    return {
+        store,
+        ...render(ui, { wrapper: Wrapper, ...renderOptions }),
+    };
 }
 
 export { renderWithProviders };
