@@ -20,7 +20,7 @@ export interface FeaturedProductProps {
 }
 
 const FeaturedProduct = (props: FeaturedProductProps) => {
-    const { product, index } = props;
+    const { product } = props;
     const { data, id } = product;
     const dispatch = useAppDispatch();
     const {
