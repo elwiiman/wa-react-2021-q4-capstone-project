@@ -1,33 +1,30 @@
 import { rest } from 'msw';
-import { apiRef, baseUrl } from '../../config/app/constants';
+import { baseUrl } from '../../config/app/constants';
 import { featuredBanners as mockedFeaturedBanners } from '../../mocks/featuredBanners';
 import { productCategories as mockedProductCategories } from '../../mocks/productCategories';
 import { featuredProducts as mockedFeaturedProducts } from '../../mocks/featuredProducts';
 
 const handlers = [
     //featured banners
-    rest.get(
-        `${baseUrl}/documents/search?ref=${apiRef}&q=%5B%5Bat(document.type%2C%20%22banner%22)%5D%5D&lang=en-us&pageSize=5`,
-        (req, res, ctx) => {
-            return res(ctx.json(mockedFeaturedBanners));
-        }
-    ),
+    rest.get(`${baseUrl}/documents/search`, (req, res, ctx) => {
+        const query = req.url.searchParams;
+        const allQ = query.getAll('q');
 
-    //product categories
-    rest.get(
-        `${baseUrl}/documents/search?ref=${apiRef}&q=%5B%5Bat(document.type%2C%20%22category%22)%5D%5D&lang=en-us&pageSize=30`,
-        (req, res, ctx) => {
-            return res(ctx.json(mockedProductCategories));
+        if (allQ.includes('[[at(document.type, "banner")]]')) {
+            return res(ctx.status(200), ctx.json(mockedFeaturedBanners));
         }
-    ),
 
-    //featured products
-    rest.get(
-        `${baseUrl}/documents/search?ref=${apiRef}&q=%5B%5Bat(document.type%2C%20%22product%22)%5D%5D&q=%5B%5Bat(document.tags%2C%20%5B%22Featured%22%5D)%5D%5D&lang=en-us&pageSize=16`,
-        (req, res, ctx) => {
-            return res(ctx.json(mockedFeaturedProducts));
+        if (
+            allQ.includes('[[at(document.type, "product")]]') &&
+            allQ.includes('[[at(document.tags, ["Featured"])]]')
+        ) {
+            return res(ctx.status(200), ctx.json(mockedFeaturedProducts));
         }
-    ),
+
+        if (allQ.includes('[[at(document.type, "category")]]')) {
+            return res(ctx.status(200), ctx.json(mockedProductCategories));
+        }
+    }),
 ];
 
 export { handlers };
