@@ -41,7 +41,11 @@ const Paginator = ({
     return (
         <PaginatorContainer>
             {/* Left navigation arrow */}
-            <PaginatorItem onClick={onPrevious} disabled={currentPage === 1}>
+            <PaginatorItem
+                onClick={onPrevious}
+                disabled={currentPage === 1}
+                data-testid="left-arrow"
+            >
                 <Arrow side="left" disabled={currentPage === 1} />
             </PaginatorItem>
             {paginationRange.map((pageNumber, index) => {
@@ -56,6 +60,7 @@ const Paginator = ({
                         key={index}
                         onClick={() => onPageChange(Number(pageNumber))}
                         selected={Number(pageNumber) === currentPage}
+                        data-testid={`page-${index}`}
                     >
                         {pageNumber}
                     </PaginatorItem>
@@ -65,6 +70,7 @@ const Paginator = ({
             <PaginatorItem
                 onClick={onNext}
                 disabled={currentPage === Number(lastPage)}
+                data-testid="right-arrow"
             >
                 <Arrow
                     side="right"

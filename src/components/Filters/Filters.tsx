@@ -54,8 +54,11 @@ const Filters = ({ categories }: FilterBarProps) => {
     return (
         <section>
             <FiltersTitle>Filtrar por:</FiltersTitle>
-            {categories.map((category) => (
-                <CheckboxContainer key={category.id}>
+            {categories.map((category, index) => (
+                <CheckboxContainer
+                    key={category.id}
+                    data-testid={`filter-category-${index}`}
+                >
                     <CustomCheckbox
                         label={category.data.name}
                         name={'filters'}
