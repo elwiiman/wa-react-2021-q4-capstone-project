@@ -14,9 +14,17 @@ describe('Fetch and render from the API', () => {
             /featured-product-\d+/
         );
 
+        const displayedCategories = await screen.findAllByTestId(
+            /category-\d+/
+        );
+
         //because mocks have 3 elements as results of featured banners
         expect(displayedBanners).toHaveLength(3);
 
+        //because mocks have 1 elements as results of featured products
         expect(displayedProducts).toHaveLength(1);
+
+        //because mocks have 5 elements as results of categories
+        expect(displayedCategories).toHaveLength(5);
     });
 });

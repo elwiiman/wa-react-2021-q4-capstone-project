@@ -44,35 +44,50 @@ const CategoriesGrid = ({ categories }: CategoriesGridProps) => {
         switch (index) {
             case 0:
                 return (
-                    <GridItem1 key={category.id}>
+                    <GridItem1
+                        key={category.id}
+                        data-testid={`category-${index}`}
+                    >
                         <GridTile category={category} />
                     </GridItem1>
                 );
 
             case 1:
                 return (
-                    <GridItem2 key={category.id}>
+                    <GridItem2
+                        key={category.id}
+                        data-testid={`category-${index}`}
+                    >
                         <GridTile category={category} />
                     </GridItem2>
                 );
 
             case 2:
                 return (
-                    <GridItem3 key={category.id}>
+                    <GridItem3
+                        key={category.id}
+                        data-testid={`category-${index}`}
+                    >
                         <GridTile category={category} />
                     </GridItem3>
                 );
 
             case 3:
                 return (
-                    <GridItem4 key={category.id}>
+                    <GridItem4
+                        key={category.id}
+                        data-testid={`category-${index}`}
+                    >
                         <GridTile category={category} />
                     </GridItem4>
                 );
 
             case 4:
                 return (
-                    <GridItem5 key={category.id}>
+                    <GridItem5
+                        key={category.id}
+                        data-testid={`category-${index}`}
+                    >
                         <GridTile category={category} />
                     </GridItem5>
                 );
