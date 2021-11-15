@@ -16,26 +16,24 @@ interface ProductInfoProps {
 const ProductInfo = ({ product: { data } }: ProductInfoProps) => {
     const { name, price, short_description, sku, category } = data;
 
-    const { data: categories } = useGetProductsCategoriesQuery();
-
-    const findCategoryName = (categoryId: Product['id']) => {
-        if (!categories) return '';
-        return categories.results.find((category) => {
-            return category.id === categoryId;
-        })?.data.name;
-    };
-
     return (
         <Container colorType="secondary_opac" noPaddingBottom>
-            <Name>{name}</Name>
-            <Price>{`$ ${price.toFixed(2)}`}</Price>
-            <ShortDescription>{short_description}</ShortDescription>
+            <Name data-testid="detail-product-name">{name}</Name>
+            <Price data-testid="detail-product-price">{`$ ${price.toFixed(
+                2
+            )}`}</Price>
+            <ShortDescription data-testid="detail-product-shortDescription">
+                {short_description}
+            </ShortDescription>
             <ExtraDetails>
                 <CategoryInfo>
-                    <span>Category:</span> {findCategoryName(category.id)}
+                    <span>Category:</span>{' '}
+                    <span data-testid="detail-product-category">
+                        {category.slug}
+                    </span>
                 </CategoryInfo>
                 <Sku>
-                    SKU: <span>{sku}</span>
+                    SKU: <span data-testid="detail-product-sku">{sku}</span>
                 </Sku>
             </ExtraDetails>
         </Container>

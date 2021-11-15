@@ -8,6 +8,7 @@ import {
     productsPage2 as mockedProductsPage2,
     productsPage3 as mockedProductsPage3,
 } from '../../mocks/products';
+import { productById as mockedProductById } from '../../mocks/productById';
 
 const handlers = [
     //featured banners
@@ -48,6 +49,11 @@ const handlers = [
         //page 2 or product listing
         if (allQ.includes('[[at(document.type, "product")]]') && page === '3') {
             return res(ctx.status(200), ctx.json(mockedProductsPage3));
+        }
+
+        //product by id
+        if (allQ.includes(`[[:d = at(document.id, "undefined") ]]`)) {
+            return res(ctx.status(200), ctx.json(mockedProductById));
         }
     }),
 ];

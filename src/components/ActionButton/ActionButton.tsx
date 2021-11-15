@@ -25,6 +25,7 @@ const ActionButton = ({
             color={color}
             type={type}
             padding={padding}
+            data-testid="addToCart-btn"
         >
             {label}
         </StyledButton>
